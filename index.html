@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Primus by Vaneguard | Trade Smarter</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#E8ECF2;--bg2:#F0F3F8;--white:#FFFFFF;
+  --navy:#061429;--royal:#1432A0;--blue:#1E40C8;--blue-lt:#4169E1;
+  --silver:#8A9BBF;--sl:#C0CAD8;--text:#061429;--muted:#5E6E8A;
+  --border:#CDD3E0;--bdk:rgba(20,50,160,0.14);--gold:#C9A84C;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(232,236,242,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+.nav-logo img{height:38px;width:38px;object-fit:cover;border-radius:7px}
+.nav-logo-main{font-family:'Playfair Display',serif;font-weight:700;font-size:.92rem;color:var(--navy);display:block;line-height:1.1}
+.nav-logo-sub{font-size:.58rem;font-weight:500;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;display:block}
+.nav-links{display:flex;align-items:center;gap:1.4rem}
+.nav-links a{font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;position:relative;padding-bottom:3px;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--royal);border-radius:2px;transition:width .25s ease}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a:hover::after{width:100%}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:5px;z-index:201}
+.hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;z-index:199;background:rgba(232,236,242,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);flex-direction:column;padding:.5rem 5vw 1.2rem;max-height:calc(100vh - 64px);overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:.95rem;font-weight:500;color:var(--muted);text-decoration:none;padding:.85rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem;transition:color .2s}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:var(--navy)}
+.mm-icon{font-size:1rem;width:20px;text-align:center}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 5vw}
+.section-eye{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:1rem}
+.section-sub{font-size:.92rem;color:var(--muted);line-height:1.75;max-width:480px}
+.btn-primary{background:var(--royal);color:#fff;padding:.8rem 1.6rem;border-radius:6px;font-size:.86rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s;display:inline-block}
+.btn-primary:hover{background:var(--blue);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--navy);padding:.8rem 1.6rem;border-radius:6px;font-size:.86rem;font-weight:600;text-decoration:none;border:1.5px solid var(--border);cursor:pointer;transition:border-color .2s,transform .15s;display:inline-block}
+.btn-outline:hover{border-color:var(--royal);transform:translateY(-1px)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-24px);transition:opacity .65s ease,transform .65s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.stagger .reveal:nth-child(2){transition-delay:.1s}
+.stagger .reveal:nth-child(3){transition-delay:.2s}
+.stagger .reveal:nth-child(4){transition-delay:.3s}
+.stagger .reveal:nth-child(5){transition-delay:.4s}
+.stagger .reveal:nth-child(6){transition-delay:.5s}
+
+.section-eye,.section-title,.section-sub{text-align:center}
+.section-sub{margin-left:auto;margin-right:auto}
+.sec-intro{display:flex;flex-direction:column;align-items:center}
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5vw 60px;background:var(--bg)}
+.hero-eye{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);padding:.35rem .9rem;border:1px solid var(--bdk);border-radius:20px;background:rgba(20,50,160,.06);margin-bottom:1.4rem}
+.hero-eye::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,7vw,4rem);font-weight:700;line-height:1.1;color:var(--navy);margin-bottom:1.4rem;max-width:700px}
+h1 span{color:var(--royal)}
+.hero-body{font-size:clamp(.88rem,2.5vw,.98rem);color:var(--muted);line-height:1.8;max-width:520px;margin:0 auto 2.2rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.hero-trust{display:flex;align-items:center;gap:clamp(.6rem,3vw,1.3rem);flex-wrap:wrap;justify-content:center;margin-top:2.5rem;padding-top:1.8rem;border-top:1px solid var(--border);width:100%;max-width:580px}
+.trust-item{display:flex;flex-direction:column;align-items:center}
+.trust-num{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--navy)}
+.trust-lbl{font-size:.63rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.trust-div{width:1px;height:28px;background:var(--border)}
+
+#why{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.why-section{padding:70px 0}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:2.5rem}
+.why-card{padding:1.8rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--white);transition:background .25s,transform .25s;position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--royal);transition:height .3s ease}
+.why-card:hover::before{height:100%}
+.why-card:hover{background:#EEF2FF;transform:translateY(-2px)}
+.why-card:nth-child(3n){border-right:none}
+.why-card:nth-child(4),.why-card:nth-child(5),.why-card:nth-child(6){border-bottom:none}
+.why-num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--sl);line-height:1;margin-bottom:.7rem}
+.why-card h3{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:.4rem}
+.why-card p{font-size:.8rem;color:var(--muted);line-height:1.65}
+
+#how{background:var(--bg)}
+.how-section{padding:70px 0}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.step-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:2rem 1.5rem;text-align:center;transition:border-color .25s,transform .25s,box-shadow .25s}
+.step-card:hover{border-color:var(--royal);transform:translateY(-3px);box-shadow:0 10px 30px rgba(20,50,160,.1)}
+.step-num-circle{width:46px;height:46px;border-radius:50%;background:var(--royal);color:#fff;font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem}
+.step-card h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.step-card p{font-size:.8rem;color:var(--muted);line-height:1.65}
+
+#primus{background:var(--navy)}
+#primus .section-eye{color:#7BA7F5}
+#primus .section-title{color:#fff}
+#primus .section-sub{color:rgba(255,255,255,.5)}
+.primus-section{padding:70px 0}
+.primus-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;margin-top:2.5rem}
+.pf-list{display:flex;flex-direction:column;gap:1.1rem}
+.pf-item{display:flex;gap:1rem;align-items:flex-start;padding:1.2rem;border:1px solid rgba(255,255,255,.08);border-radius:11px;transition:border-color .2s,background .2s}
+.pf-item:hover{border-color:rgba(65,105,225,.5);background:rgba(65,105,225,.06)}
+.pf-icon{width:36px;height:36px;flex-shrink:0;background:rgba(65,105,225,.18);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.pf-text h4{font-size:.86rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.pf-text p{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.6}
+.primus-visual{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.6rem}
+.pv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem}
+.pv-title{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase}
+.pv-live{display:flex;align-items:center;gap:.35rem;font-family:'JetBrains Mono',monospace;font-size:.64rem;color:#4ade80}
+.pv-live::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+.pv-chart{height:90px;display:flex;align-items:flex-end;gap:2px;margin-bottom:1.1rem}
+.pv-bar{flex:1;border-radius:2px 2px 0 0;min-width:0}
+.pv-bar.w{background:linear-gradient(to top,#15803d,#4ade80)}
+.pv-bar.a{background:linear-gradient(to top,#1d4ed8,#60a5fa)}
+.pv-bar.m{background:rgba(251,191,36,.7)}
+.pv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.pvs{text-align:center}
+.pvs-val{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff}
+.pvs-lbl{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-top:.15rem}
+
+#pricing{background:var(--bg)}
+.pricing-section{padding:70px 0}
+.tab-bar{display:flex;gap:.4rem;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:.3rem;width:100%;max-width:420px;margin:1.8rem auto 0;flex-wrap:wrap}
+.tab-btn{flex:1;padding:.5rem .8rem;border-radius:7px;font-size:.78rem;font-weight:600;border:none;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s;white-space:nowrap}
+.tab-btn.active{background:var(--navy);color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+.tier-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;margin-top:2.5rem}
+.tier-tag{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);white-space:nowrap}
+.tier-line{flex:1;height:1.5px;background:var(--border)}
+
+.cards-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.1rem}
+.p-card{background:var(--white);border:1.5px solid var(--border);border-radius:13px;padding:1.6rem;cursor:pointer;transition:border-color .2s,transform .15s,box-shadow .2s;position:relative}
+.p-card:hover:not(.contact-card){border-color:var(--royal);transform:translateY(-2px);box-shadow:0 8px 26px rgba(20,50,160,.1)}
+.p-card.selected{border-color:var(--blue);background:#EEF2FF}
+.p-card.contact-card{cursor:default}
+.p-badge{position:absolute;top:-11px;left:1.3rem;background:var(--navy);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem;border-radius:20px}
+.p-badge.contact{background:var(--royal)}
+.p-price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:.15rem}
+.p-fee{font-size:.68rem;color:var(--muted);margin-bottom:.25rem}
+.p-target{font-family:'JetBrains Mono',monospace;font-size:.71rem;color:#15803d;margin-bottom:1rem}
+.p-features{list-style:none;margin-bottom:1.2rem}
+.p-features li{font-size:.79rem;color:var(--muted);padding:.22rem 0;display:flex;align-items:center;gap:.4rem}
+.p-features li::before{content:'--';color:var(--sl)}
+.p-features li.gold::before{content:'*';color:var(--gold)}
+.p-btn{width:100%;padding:.66rem;border-radius:7px;font-size:.79rem;font-weight:600;cursor:pointer;transition:all .2s}
+.p-btn-sel{background:transparent;color:var(--navy);border:1.5px solid var(--border)}
+.p-btn-sel:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.p-btn-sel.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+.p-btn-contact{background:transparent;color:var(--royal);border:1.5px solid var(--royal)}
+.p-btn-contact:hover{background:var(--royal);color:#fff}
+.card-addons{margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:.45rem}
+.card-addon-row{display:flex;align-items:center;gap:.55rem;cursor:pointer;padding:.35rem .45rem;border-radius:6px;transition:background .15s}
+.card-addon-row:hover{background:rgba(20,50,160,.05)}
+.addon-chk{width:15px;height:15px;flex-shrink:0;border:1.5px solid var(--border);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.55rem;color:transparent;transition:all .2s}
+.card-addon-row.checked .addon-chk{background:var(--royal);border-color:var(--royal);color:#fff}
+.addon-lbl{font-size:.73rem;color:var(--muted);flex:1}
+.addon-price-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--royal);font-weight:600}
+
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.1rem;margin-top:1.8rem}
+.ind-card{background:var(--white);border:1.5px solid var(--border);border-radius:13px;padding:1.6rem;cursor:pointer;transition:all .2s}
+.ind-card:hover{border-color:var(--royal);transform:translateY(-2px)}
+.ind-card.selected{border-color:var(--blue);background:#EEF2FF}
+.ind-icon{font-size:1.3rem;margin-bottom:.7rem}
+.ind-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+.ind-tagline{font-size:.73rem;color:var(--royal);font-weight:600;margin-bottom:.55rem}
+.ind-desc{font-size:.78rem;color:var(--muted);line-height:1.6;margin-bottom:.9rem}
+.ind-price{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:.2rem}
+.ind-fee{font-size:.66rem;color:var(--muted);margin-bottom:.9rem}
+
+.checkout-bar{position:fixed;bottom:0;left:0;right:0;z-index:199;background:var(--navy);border-top:1px solid rgba(255,255,255,.08);padding:1rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;transform:translateY(100%);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.checkout-bar.visible{transform:translateY(0)}
+.cb-items{font-size:.7rem;color:rgba(255,255,255,.4);max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cb-total{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:#fff}
+.cb-actions{display:flex;gap:.7rem}
+.cb-clear{background:transparent;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.12);padding:.62rem 1rem;border-radius:6px;font-size:.78rem;cursor:pointer;transition:all .2s}
+.cb-clear:hover{color:#fff}
+.cb-pay{background:#fff;color:var(--navy);padding:.62rem 1.5rem;border-radius:6px;font-size:.83rem;font-weight:700;border:none;cursor:pointer;transition:background .2s}
+.cb-pay:hover{background:#e8edf5}
+
+.modal-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(6,20,41,.65);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:18px;padding:2.2rem;max-width:440px;width:92%;position:relative;box-shadow:0 24px 80px rgba(6,20,41,.22);max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--muted)}
+.modal h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:1.3rem}
+.modal-row{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.84rem}
+.modal-row span:first-child{color:var(--muted)}
+.modal-row span:last-child{font-weight:600;color:var(--navy)}
+.modal-total{display:flex;justify-content:space-between;padding:.9rem 0 1.3rem;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--navy)}
+.modal-note{background:#EEF2FF;border-radius:8px;padding:.8rem;font-size:.75rem;color:var(--muted);line-height:1.6;margin-bottom:1.3rem}
+.modal-actions{display:flex;gap:.7rem}
+.modal-pay{flex:2;background:var(--navy);color:#fff;padding:.82rem;border-radius:8px;font-size:.86rem;font-weight:700;border:none;cursor:pointer}
+.modal-pay:hover{background:var(--royal)}
+.modal-back{flex:1;background:transparent;color:var(--muted);padding:.82rem;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;font-size:.86rem}
+
+#reviews{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.reviews-section{padding:70px 0}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-top:2.5rem}
+.r-card{border:1px solid var(--border);border-radius:13px;padding:1.6rem;background:var(--bg2);transition:border-color .2s,transform .2s}
+.r-card:hover{border-color:var(--royal);transform:translateY(-2px)}
+.r-stars{color:var(--gold);font-size:.75rem;letter-spacing:.1em;margin-bottom:.65rem}
+.r-text{font-size:.84rem;color:var(--muted);line-height:1.75;margin-bottom:1.1rem;font-style:italic}
+.r-author{display:flex;align-items:center;gap:.65rem}
+.r-av{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.r-name{font-size:.82rem;font-weight:600;color:var(--navy)}
+.r-pkg{font-size:.68rem;color:var(--muted)}
+.r-country{font-size:.65rem;color:var(--royal);font-weight:500}
+
+#performance{background:var(--bg)}
+.perf-section{padding:70px 0}
+.perf-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem}
+.perf-stat-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.4rem;text-align:center;transition:border-color .2s,transform .2s}
+.perf-stat-card:hover{border-color:var(--royal);transform:translateY(-2px)}
+.psc-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--navy)}
+.psc-val.green{color:#15803d}
+.psc-val.blue{color:var(--royal)}
+.psc-lbl{font-size:.68rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:.3rem}
+.perf-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+.perf-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.8rem}
+.perf-card-title{font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.3rem;font-weight:600}
+.bar-chart{height:140px;display:flex;align-items:flex-end;gap:2px}
+.pc-bar{flex:1;border-radius:2px 2px 0 0;min-width:0;transition:opacity .2s}
+.pc-bar:hover{opacity:.7}
+.pc-bar.w{background:linear-gradient(to top,#15803d,#4ade80)}
+.pc-bar.a{background:linear-gradient(to top,#1d4ed8,#60a5fa)}
+.pc-bar.m{background:#fde68a}
+.perf-legend{display:flex;gap:1rem;font-size:.7rem;color:var(--muted);margin-top:.8rem;flex-wrap:wrap}
+.leg-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:.3rem;vertical-align:middle}
+.donut-wrap{display:flex;flex-direction:column;align-items:center}
+.donut-svg{width:170px;height:170px}
+.donut-legend{display:flex;flex-direction:column;gap:.5rem;margin-top:1.1rem;width:100%}
+.dl-row{display:flex;align-items:center;justify-content:space-between;font-size:.78rem}
+.dl-left{display:flex;align-items:center;gap:.5rem;color:var(--muted)}
+.dl-val{font-weight:700;color:var(--navy)}
+.perf-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin:0 .35rem;animation:pulse 1.8s infinite}
+.pairs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.pair-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.3rem;text-align:center;transition:border-color .2s,transform .2s}
+.pair-card:hover{border-color:var(--royal);transform:translateY(-2px)}
+.pair-name{font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
+.pair-tag{font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.1rem .4rem;border-radius:8px;background:rgba(201,168,76,.15);color:var(--gold)}
+.pair-rate{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:#15803d;transition:opacity .3s}
+.pair-lbl{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}
+.pd-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.3rem;text-align:center}
+.pd-icon{font-size:1.5rem;margin-bottom:.5rem}
+.pd-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:.2rem}
+.pd-val.green{color:#15803d}
+.pd-lbl{font-size:.7rem;color:var(--muted)}
+
+#faq{background:var(--white);border-top:1px solid var(--border)}
+.faq-section{padding:70px 0}
+.faq-wrap{max-width:680px;margin-top:2.5rem}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;color:var(--navy);text-align:left;gap:1rem}
+.faq-icon{font-size:1rem;color:var(--muted);transition:transform .25s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--royal)}
+.faq-a{font-size:.82rem;color:var(--muted);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s}
+.faq-item.open .faq-a{max-height:240px;padding-bottom:1rem}
+
+#contact{background:var(--navy)}
+#contact .section-eye{color:#7BA7F5}
+#contact .section-title{color:#fff}
+#contact .section-sub{color:rgba(255,255,255,.5)}
+.contact-section{padding:70px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2.8rem;align-items:start}
+.c-links{display:flex;flex-direction:column;gap:.7rem;margin-top:1.6rem}
+.c-link{display:flex;align-items:center;gap:.9rem;padding:.95rem 1.1rem;border:1px solid rgba(255,255,255,.1);border-radius:10px;color:rgba(255,255,255,.7);text-decoration:none;font-size:.85rem;transition:all .2s}
+.c-link:hover{border-color:rgba(65,105,225,.5);color:#fff;background:rgba(65,105,225,.08)}
+.c-link-icon{font-size:1.1rem;flex-shrink:0}
+.c-link-body{display:flex;flex-direction:column}
+.c-link-label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.15rem}
+.c-link-val{font-size:.82rem;color:rgba(255,255,255,.75)}
+.c-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4ade80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);padding:.15rem .5rem;border-radius:10px;margin-top:.2rem;width:fit-content}
+.contact-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:15px;padding:1.8rem}
+.contact-form h3{font-family:'Playfair Display',serif;font-size:1rem;color:#fff;margin-bottom:1.3rem}
+.cf-grp{margin-bottom:.85rem}
+.cf-grp label{display:block;font-size:.66rem;font-weight:600;color:rgba(255,255,255,.36);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.32rem}
+.cf-grp input,.cf-grp textarea,.cf-grp select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:.68rem .9rem;color:#fff;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s;resize:vertical}
+.cf-grp input::placeholder,.cf-grp textarea::placeholder{color:rgba(255,255,255,.22)}
+.cf-grp input:focus,.cf-grp textarea:focus,.cf-grp select:focus{border-color:rgba(65,105,225,.5)}
+.cf-grp textarea{min-height:80px}
+.cf-grp select option{background:#0B1F3A}
+.cf-submit{width:100%;padding:.82rem;background:#fff;color:var(--navy);border:none;border-radius:7px;font-size:.86rem;font-weight:700;cursor:pointer;transition:background .2s}
+.cf-submit:hover{background:#e8edf5}
+
+footer{background:#04101F;border-top:1px solid rgba(255,255,255,.07);padding:2.8rem 5vw 1.8rem}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:1.6rem}
+.footer-brand-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem}
+.footer-brand-row img{height:32px;width:32px;object-fit:cover;border-radius:6px}
+.footer-brand-name{font-family:'Playfair Display',serif;font-weight:700;font-size:.9rem;color:#fff}
+.footer-brand p{font-size:.76rem;color:rgba(255,255,255,.28);line-height:1.65;max-width:220px}
+.footer-col h4{font-size:.63rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.26);margin-bottom:.85rem}
+.footer-col a{display:block;font-size:.78rem;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:.48rem;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.disclaimer{font-size:.67rem;color:rgba(255,255,255,.17);line-height:1.65;max-width:760px;margin-bottom:1.3rem}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.68rem;color:rgba(255,255,255,.17)}
+
+@media(max-width:900px){
+  .why-grid{grid-template-columns:1fr 1fr}
+  .why-card:nth-child(3n){border-right:1px solid var(--border)}
+  .why-card:nth-child(2n){border-right:none}
+  .why-card:nth-child(5),.why-card:nth-child(6){border-bottom:none}
+  .why-card:nth-child(4){border-bottom:1px solid var(--border)}
+  .steps-grid{grid-template-columns:1fr}
+  .primus-grid{grid-template-columns:1fr}
+  .perf-stats-row{grid-template-columns:repeat(2,1fr)}
+  .perf-charts-grid{grid-template-columns:1fr}
+  .perf-detail-grid{grid-template-columns:1fr 1fr}
+  .pairs-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .nav-links{display:none}
+}
+@media(max-width:580px){
+  #hero{padding:90px 5vw 50px}
+  .why-grid{grid-template-columns:1fr}
+  .why-card{border-right:none!important}
+  .why-card:nth-child(n){border-bottom:1px solid var(--border)}
+  .why-card:last-child{border-bottom:none}
+  .perf-stats-row{grid-template-columns:1fr 1fr}
+  .perf-detail-grid{grid-template-columns:1fr}
+  .pairs-grid{grid-template-columns:1fr}
+  .cards-row{grid-template-columns:1fr}
+  .ind-grid{grid-template-columns:1fr}
+  .tab-bar{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="logo.png" alt="Primus"/>
+    <div><span class="nav-logo-main">Primus</span><span class="nav-logo-sub">by Vaneguard</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#why">Why Primus</a>
+    <a href="#how">How It Works</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#performance">Performance</a>
+    <a href="#faq">FAQ</a>
+    <a href="#pricing">Get Started</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="closeMenu()"><span class="mm-icon">&#127968;</span>Home</a>
+  <a href="#why" onclick="closeMenu()"><span class="mm-icon">&#9889;</span>Why Primus</a>
+  <a href="#how" onclick="closeMenu()"><span class="mm-icon">&#128260;</span>How It Works</a>
+  <a href="#reviews" onclick="closeMenu()"><span class="mm-icon">&#11088;</span>Reviews</a>
+  <a href="#performance" onclick="closeMenu()"><span class="mm-icon">&#128202;</span>Performance</a>
+  <a href="#faq" onclick="closeMenu()"><span class="mm-icon">&#10067;</span>FAQ</a>
+  <a href="#pricing" onclick="closeMenu()"><span class="mm-icon">&#128640;</span>Get Started</a>
+  <a href="#contact" onclick="closeMenu()"><span class="mm-icon">&#9993;</span>Contact Us</a>
+</div>
+
+<section id="hero">
+  <div class="hero-eye">Intelligent Trading Systems</div>
+  <h1>Trade Smarter.<br/><span>Generational Wealth</span><br/>Starts Here.</h1>
+  <p class="hero-body">The future of wealth creation is being shaped by technology. Powered by Primus, Vaneguard equips ambitious individuals with intelligent tools and digital solutions designed to help them trade smarter, grow their wealth, and create generational impact.</p>
+  <div class="hero-btns">
+    <a href="#pricing" class="btn-primary">Get Started</a>
+    <a href="#primus" class="btn-outline">Explore Primus &#8594;</a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item"><span class="trust-num">89%</span><span class="trust-lbl">Win Rate</span></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><span class="trust-num">3 Yrs</span><span class="trust-lbl">Live Since 2023</span></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><span class="trust-num">24/7</span><span class="trust-lbl">Live Execution</span></div>
+    <div class="trust-div"></div>
+    <div class="trust-item"><span class="trust-num">156</span><span class="trust-lbl">Weeks Tracked</span></div>
+  </div>
+</section>
+
+<section id="why" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap why-section">
+    <div class="reveal sec-intro">
+      <p class="section-eye">The Advantage</p>
+      <h2 class="section-title">Why Automated Bots<br/>Outperform Manual Trading</h2>
+    </div>
+    <div class="why-grid stagger">
+      <div class="why-card reveal"><div class="why-num">01</div><h3>Proven Strategy</h3><p>Every bot runs on backtested, institutional-grade strategies validated across years of live market data. No guesswork. Only verified, repeatable logic proven across bull and bear conditions.</p></div>
+      <div class="why-card reveal"><div class="why-num">02</div><h3>Disciplined Risk Management</h3><p>The #1 thing traders get wrong is risk. Primus enforces strict risk-per-trade rules, automatic stop-losses, and breakeven triggers on every position, with no exceptions and no overrides.</p></div>
+      <div class="why-card reveal"><div class="why-num">03</div><h3>Emotionless Execution</h3><p>No fear, no greed, no hesitation. Every trade is placed and managed by rule, eliminating the emotional decisions that cost manual traders thousands every month.</p></div>
+      <div class="why-card reveal"><div class="why-num">04</div><h3>Multi-Strategy Engine</h3><p>Runs multiple concurrent strategies across forex, crypto, and futures simultaneously, a level of coverage no human trader can physically replicate.</p></div>
+      <div class="why-card reveal"><div class="why-num">05</div><h3>Always-On Coverage</h3><p>Executes across London, New York, and Asian sessions. Every market opportunity is captured, even while you sleep, work, or live your life.</p></div>
+      <div class="why-card reveal"><div class="why-num">06</div><h3>Consistent Week to Week</h3><p>Same rules. Same discipline. Every week. No off-days, no revenge trades. An 89% win rate across 3 years of live results backs this up.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="background:var(--bg)">
+  <div class="wrap how-section">
+    <div class="reveal sec-intro">
+      <p class="section-eye">The Process</p>
+      <h2 class="section-title">Get Started in 3 Steps</h2>
+      <p class="section-sub">From purchase to live trading, we handle the heavy lifting so you don't have to.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal"><div class="step-num-circle">01</div><h3>Choose Your Package</h3><p>Select the tier that matches your capital and target returns. Add optional services like Setup &amp; Lifetime Support or an Integrated VPN depending on your region and platform.</p></div>
+      <div class="step-card reveal"><div class="step-num-circle">02</div><h3>We Build Your Bot</h3><p>Our engineers build your bot from scratch. Every bot is made individually to avoid complications. If you included Setup, we also configure it fully on your MT5/MT4 account. No technical knowledge needed.</p></div>
+      <div class="step-card reveal"><div class="step-num-circle">03</div><h3>Bot Runs. You Profit.</h3><p>Your bot executes trades automatically. Monitor your account anytime, anywhere. Our team remains available for support throughout your entire journey with Primus.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="primus" style="background:var(--navy)">
+  <div class="wrap primus-section">
+    <div class="reveal sec-intro">
+      <p class="section-eye">Powered by Primus</p>
+      <h2 class="section-title">Apex-Level Intelligence.<br/>Built for You.</h2>
+      <p class="section-sub">Primus is Vaneguard's flagship system, engineered with the precision of institutional trading infrastructure, now accessible to ambitious individuals.</p>
+    </div>
+    <div class="primus-grid">
+      <div class="pf-list reveal-left">
+        <div class="pf-item"><div class="pf-icon">&#9889;</div><div class="pf-text"><h4>Millisecond Execution</h4><p>Orders placed and managed the instant market conditions meet strategy criteria.</p></div></div>
+        <div class="pf-item"><div class="pf-icon">&#127885;</div><div class="pf-text"><h4>Gold (XAUUSD) Integration</h4><p>Packages from $1,000 include a dedicated Gold bot, one of the highest-return instruments available.</p></div></div>
+        <div class="pf-item"><div class="pf-icon">&#128737;</div><div class="pf-text"><h4>Capital Protection Logic</h4><p>Automatic breakeven triggers and drawdown limits ensure no single losing run can damage your account.</p></div></div>
+        <div class="pf-item"><div class="pf-icon">&#128200;</div><div class="pf-text"><h4>Compounding Returns</h4><p>Weekly targets are structured to compound, so your returns grow as your account grows.</p></div></div>
+      </div>
+      <div class="primus-visual reveal-right">
+        <div class="pv-header"><span class="pv-title">3-Year Performance Snapshot</span><span class="pv-live">Live Data</span></div>
+        <div class="pv-chart" id="pvChart"></div>
+        <div class="pv-stats">
+          <div class="pvs"><div class="pvs-val">89%</div><div class="pvs-lbl">Win Rate</div></div>
+          <div class="pvs"><div class="pvs-val">139</div><div class="pvs-lbl">Target Hit</div></div>
+          <div class="pvs"><div class="pvs-val">11</div><div class="pvs-lbl">Above Target</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--bg)">
+  <div class="wrap pricing-section">
+    <div class="reveal sec-intro">
+      <p class="section-eye">Bot Packages</p>
+      <h2 class="section-title">Choose Your System</h2>
+      <p class="section-sub">Select one or multiple packages. Add optional services per bot. Checkout in one order.</p>
+    </div>
+    <div class="tab-bar reveal">
+      <button class="tab-btn active" onclick="switchTab('mt5',this)">MT5 / MT4</button>
+      <button class="tab-btn" onclick="switchTab('tv',this)">TradingView</button>
+      <button class="tab-btn" onclick="switchTab('ind',this)">Indicators</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-mt5">
+      <div class="tier-hdr"><span class="tier-tag">Bronze Tier Assist</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card">
+            <div class="p-price">$330</div><div class="p-fee">Incl. 10% fee &middot; Base: $300</div><div class="p-target">&#8593; Weekly Target: $255</div>
+            <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li><li>MT5 &amp; MT4 compatible</li></ul>
+            <a href="https://primusvaneguard.gumroad.com/l/olcht" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
+            <div class="card-addons">
+              <a href="https://primusvaneguard.gumroad.com/l/jmaica" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://primusvaneguard.gumroad.com/l/iuckh" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$150 &#8594;</span></a>
+            </div>
+        </div>
+        <div class="p-card">
+            <div class="p-price">$550</div><div class="p-fee">Incl. 10% fee &middot; Base: $500</div><div class="p-target">&#8593; Weekly Target: $425</div>
+            <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li><li>MT5 &amp; MT4 compatible</li></ul>
+            <a href="https://primusvaneguard.gumroad.com/l/koqorf" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
+            <div class="card-addons">
+              <a href="https://primusvaneguard.gumroad.com/l/jmaica" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://primusvaneguard.gumroad.com/l/pounn" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$200 &#8594;</span></a>
+            </div>
+        </div>
+      </div>
+      <div class="tier-hdr"><span class="tier-tag">Standard Tier</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card">
+            <div class="p-badge">Most Popular</div>
+            <div class="p-price">$1,100</div><div class="p-fee">Incl. 10% fee &middot; Base: $1,000</div><div class="p-target">&#8593; Weekly Target: $850</div>
+            <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Multi-strategy engine</li><li>Advanced risk logic</li><li>MT5 &amp; MT4 compatible</li></ul>
+            <a href="https://primusvaneguard.gumroad.com/l/rphhvm" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
+            <div class="card-addons">
+              <a href="https://primusvaneguard.gumroad.com/l/jmaica" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://primusvaneguard.gumroad.com/l/ibkywb" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$300 &#8594;</span></a>
+            </div>
+        </div>
+      </div>
+      <div class="tier-hdr"><span class="tier-tag">Premium Tier</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card">
+            <div class="p-price">$2,200</div><div class="p-fee">Incl. 10% fee &middot; Base: $2,000</div><div class="p-target">&#8593; Weekly Target: $1,700</div>
+            <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Multi-strategy engine</li><li>Priority support</li><li>MT5 &amp; MT4 compatible</li></ul>
+            <a href="https://primusvaneguard.gumroad.com/l/vxujy" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
+            <div class="card-addons">
+              <a href="https://primusvaneguard.gumroad.com/l/jmaica" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://primusvaneguard.gumroad.com/l/tpzqos" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$350 &#8594;</span></a>
+            </div>
+        </div>
+        <div class="p-card contact-card">
+            <div class="p-badge contact">Private Acquisition</div>
+            <div class="p-price">$5,500</div><div class="p-fee">Incl. 10% fee &middot; Base: $5,000</div><div class="p-target">&#8593; Weekly Target: $4,250</div>
+            <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Multi-strategy engine</li><li>Priority support</li><li>MT5 &amp; MT4 compatible</li></ul>
+            <button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button>
+        </div>
+      </div>
+      <div class="tier-hdr"><span class="tier-tag">Elite Tier</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card contact-card"><div class="p-badge contact">Private Acquisition</div><div class="p-price">$11,000</div><div class="p-fee">Incl. 10% fee &middot; Base: $10,000</div><div class="p-target">&#8593; Weekly Target: $8,500</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Full strategy suite</li><li>Dedicated support channel</li><li>Custom configuration</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+        <div class="p-card contact-card"><div class="p-badge contact">Private Acquisition</div><div class="p-price">$22,000</div><div class="p-fee">Incl. 10% fee &middot; Base: $20,000</div><div class="p-target">&#8593; Weekly Target: $17,000</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Full strategy suite</li><li>VIP dedicated support</li><li>Custom configuration</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-tv">
+      <p style="font-size:.8rem;color:var(--muted);margin-top:1.3rem;padding:.75rem 1rem;background:rgba(20,50,160,.05);border:1px solid var(--bdk);border-radius:8px;max-width:520px">TradingView bots run natively in your browser. Prices are $100 more than MT5 to reflect added platform flexibility.</p>
+      <div class="tier-hdr"><span class="tier-tag">Bronze Tier Assist</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card contact-card"><div class="p-badge contact">Speak with Advisor</div><div class="p-price">$440</div><div class="p-fee">Incl. 10% fee &middot; Base: $400 &middot; TradingView</div><div class="p-target">&#8593; Weekly Target: $340</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>TradingView / Web</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+        <div class="p-card contact-card"><div class="p-badge contact">Speak with Advisor</div><div class="p-price">$660</div><div class="p-fee">Incl. 10% fee &middot; Base: $600 &middot; TradingView</div><div class="p-target">&#8593; Weekly Target: $510</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>TradingView / Web</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+      </div>
+      <div class="tier-hdr"><span class="tier-tag">Standard Tier</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card contact-card"><div class="p-badge contact">Speak with Advisor</div><div class="p-price">$1,210</div><div class="p-fee">Incl. 10% fee &middot; Base: $1,100 &middot; TradingView</div><div class="p-target">&#8593; Weekly Target: $935</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>TradingView / Web</li><li>Multi-strategy engine</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+      </div>
+      <div class="tier-hdr"><span class="tier-tag">Premium Tier</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card contact-card"><div class="p-badge contact">Speak with Advisor</div><div class="p-price">$2,310</div><div class="p-fee">Incl. 10% fee &middot; Base: $2,100 &middot; TradingView</div><div class="p-target">&#8593; Weekly Target: $1,785</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>TradingView / Web</li><li>Priority support</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+        <div class="p-card contact-card"><div class="p-badge contact">Speak with Advisor</div><div class="p-price">$5,610</div><div class="p-fee">Incl. 10% fee &middot; Base: $5,100 &middot; TradingView</div><div class="p-target">&#8593; Weekly Target: $4,335</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>TradingView / Web</li><li>Priority support</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+      </div>
+      <div class="tier-hdr"><span class="tier-tag">Elite Tier</span><div class="tier-line"></div></div>
+      <div class="cards-row">
+        <div class="p-card contact-card"><div class="p-badge contact">Private Acquisition</div><div class="p-price">$11,110</div><div class="p-fee">Incl. 10% fee &middot; Base: $10,100</div><div class="p-target">&#8593; Weekly Target: $8,585</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Full strategy suite</li><li>Custom configuration</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+        <div class="p-card contact-card"><div class="p-badge contact">Private Acquisition</div><div class="p-price">$22,110</div><div class="p-fee">Incl. 10% fee &middot; Base: $20,100</div><div class="p-target">&#8593; Weekly Target: $17,085</div><ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Full strategy suite</li><li>VIP configuration</li></ul><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-ind">
+      <p style="font-size:.8rem;color:var(--muted);margin-top:1.3rem;padding:.75rem 1rem;background:rgba(20,50,160,.05);border:1px solid var(--bdk);border-radius:8px;max-width:560px">Professional-grade AI indicators for traders who prefer manual control with intelligent signal assistance.</p>
+      <div class="ind-grid">
+        <div class="ind-card contact-card"><div class="p-badge contact" style="position:static;display:inline-block;margin-bottom:.7rem">Speak with Advisor</div><div class="ind-icon">&#127919;</div><div class="ind-name">Sniper Entry</div><div class="ind-tagline">Precision Entry Signals</div><div class="ind-desc">Identifies high-probability entry points with surgical precision. Built for traders who want to enter at exactly the right moment across forex, crypto, and futures.</div><div class="ind-price">$150</div><div class="ind-fee">Includes 10% transaction fee</div><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+        <div class="ind-card contact-card"><div class="p-badge contact" style="position:static;display:inline-block;margin-bottom:.7rem">Speak with Advisor</div><div class="ind-icon">&#128202;</div><div class="ind-name">Swing / Long-Term</div><div class="ind-tagline">Long-Term Position Signals</div><div class="ind-desc">Catches major market moves early. Signals optimal hold periods. Includes stocks compatibility, built for position traders and long-term holders.</div><div class="ind-price">$190</div><div class="ind-fee">Includes 10% transaction fee</div><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+        <div class="ind-card contact-card"><div class="p-badge contact" style="position:static;display:inline-block;margin-bottom:.7rem">Speak with Advisor</div><div class="ind-icon">&#127754;</div><div class="ind-name">Liquidity Hunter</div><div class="ind-tagline">Smart Money Flow Detection</div><div class="ind-desc">Tracks where institutional liquidity is being hunted. Identifies stop hunts, liquidity sweeps, and order block reactions in real-time.</div><div class="ind-price">$660</div><div class="ind-fee">Includes 10% transaction fee</div><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+        <div class="ind-card contact-card"><div class="p-badge contact" style="position:static;display:inline-block;margin-bottom:.7rem">Speak with Advisor</div><div class="ind-icon">&#9889;</div><div class="ind-name">Scalping</div><div class="ind-tagline">High-Frequency Short-Term Signals</div><div class="ind-desc">Rapid buy/sell signals optimised for short holding periods, capturing small, consistent gains at high frequency across volatile pairs.</div><div class="ind-price">$113</div><div class="ind-fee">Includes 10% transaction fee</div><button class="p-btn p-btn-contact" onclick="openTelegram()">Speak with an Advisor &#8594;</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checkout-bar" id="checkoutBar">
+  <div><div class="cb-items" id="cbItems">No items selected</div><div class="cb-total" id="cbTotal">$0</div></div>
+  <div class="cb-actions"><button class="cb-clear" onclick="clearCart()">Clear</button><button class="cb-pay" onclick="openModal()">Review &amp; Checkout &#8594;</button></div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&#215;</button>
+    <h2>Your Order</h2>
+    <div id="modalRows"></div>
+    <div class="modal-total"><span>Total</span><span id="modalTotal">$0</span></div>
+    <div class="modal-note">&#128274; After confirming, you will be directed to our secure payment gateway. All purchases include a full onboarding guide.</div>
+    <div class="modal-actions"><button class="modal-back" onclick="closeModal()">Back</button><button class="modal-pay" onclick="openTelegram()">Confirm &amp; Pay &#8594;</button></div>
+  </div>
+</div>
+
+<section id="reviews" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap reviews-section">
+    <div class="reveal sec-intro">
+      <p class="section-eye" style="color:var(--gold);font-family:'Playfair Display',serif;font-size:.82rem;letter-spacing:.1em">Social Proof</p>
+      <h2 class="section-title">What Our Top Clients Say</h2>
+      <p class="section-sub">Top clients from Standard tier and above. Real experiences from $1,000 to $20,000 package holders.</p>
+    </div>
+    <div class="reviews-grid reveal">
+      <div class="r-card"><div class="r-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="r-text">"I always knew AI was the future of making money. The way technology has been evolving, I knew this was the move. Primus confirmed everything I believed. AI trading genuinely changed my life for the better. I just wish time zones could be managed a little more smoothly."</p><div class="r-author"><div class="r-av">DK</div><div><div class="r-name">David K.</div><div class="r-country">&#127482;&#127480; United States</div><div class="r-pkg">$1,000 Standard Bot</div></div></div></div>
+      <div class="r-card"><div class="r-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="r-text">"I used to spend 6 hours a day on charts and still ended the month negative. This bot made back its entire purchase price in under 3 weeks. I genuinely wish I found this sooner."</p><div class="r-author"><div class="r-av">AM</div><div><div class="r-name">Amara M.</div><div class="r-country">&#127468;&#127463; United Kingdom</div><div class="r-pkg">$2,000 Premium Bot</div></div></div></div>
+      <div class="r-card"><div class="r-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="r-text">"Returns are consistent and the Gold bot is exceptional. It's a bit to get your head around at first, but Cate walked me through the full setup personally and made it completely seamless."</p><div class="r-author"><div class="r-av">TN</div><div><div class="r-name">Tobi N.</div><div class="r-country">&#127464;&#127462; Canada</div><div class="r-pkg">$5,000 Premium Bot</div></div></div></div>
+      <div class="r-card"><div class="r-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="r-text">"My biggest issue as a trader has always been risk management. I'd always overextend and blow accounts. Primus completely solved that. Every position is managed perfectly. I sleep well now."</p><div class="r-author"><div class="r-av">RO</div><div><div class="r-name">Rotimi O.</div><div class="r-country">&#127462;&#127466; Dubai, UAE</div><div class="r-pkg">$10,000 Elite Bot</div></div></div></div>
+      <div class="r-card"><div class="r-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="r-text">"I knew this would be my year. I just needed to lock in and stay consistent. I stuck with Primus through the slow weeks and the compounding is real. Consistency is what brought me here and this system rewards it."</p><div class="r-author"><div class="r-av">KA</div><div><div class="r-name">Kolade A.</div><div class="r-country">&#127462;&#127482; Australia</div><div class="r-pkg">$20,000 Elite Bot</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="performance" style="background:var(--bg)">
+  <div class="wrap perf-section">
+    <div class="reveal sec-intro">
+      <p class="section-eye">Track Record</p>
+      <h2 class="section-title">Verified Consistency Data</h2>
+      <p class="section-sub">156 weeks of live performance data since 2023. Not projections. Real week-by-week results from active accounts.</p>
+    </div>
+    <div class="perf-stats-row stagger">
+      <div class="perf-stat-card reveal"><div class="psc-val green" id="liveWinRate">89%</div><div class="psc-lbl">Overall Win Rate <span class="live-dot"></span>Live</div></div>
+      <div class="perf-stat-card reveal"><div class="psc-val">139</div><div class="psc-lbl">Weeks Hit Target</div></div>
+      <div class="perf-stat-card reveal"><div class="psc-val blue">11</div><div class="psc-lbl">Weeks Above Target</div></div>
+      <div class="perf-stat-card reveal"><div class="psc-val">6</div><div class="psc-lbl">Weeks Below Target</div></div>
+    </div>
+    <div class="perf-charts-grid reveal">
+      <div class="perf-card">
+        <div class="perf-card-title">Week-by-Week Results: 156 Weeks (Live Since 2023)</div>
+        <div class="bar-chart" id="perfChart"></div>
+        <div class="perf-legend">
+          <span><span class="leg-dot" style="background:#4ade80"></span>Hit Target (139 wks)</span>
+          <span><span class="leg-dot" style="background:#60a5fa"></span>Above Target (11 wks)</span>
+          <span><span class="leg-dot" style="background:#fde68a"></span>Below Target (6 wks)</span>
+        </div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-card-title">Win Rate Distribution</div>
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#E8ECF2" stroke-width="14"/>
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#60a5fa" stroke-width="14" id="donut-above" stroke-dasharray="0 302" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#4ade80" stroke-width="14" id="donut-hit" stroke-dasharray="0 302" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#fde68a" stroke-width="14" id="donut-miss" stroke-dasharray="0 302" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+            <text x="60" y="56" text-anchor="middle" font-family="Playfair Display,serif" font-size="16" font-weight="700" fill="#061429">89%</text>
+            <text x="60" y="69" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" fill="#5E6E8A" letter-spacing="1">WIN RATE</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:#4ade80"></span>Hit Weekly Target</div><div class="dl-val">139 wks</div></div>
+            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:#60a5fa"></span>Above Target</div><div class="dl-val">11 wks</div></div>
+            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:#fde68a"></span>Below Target</div><div class="dl-val">6 wks</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:2.5rem;text-align:center">
+      <p class="perf-card-title" style="margin-bottom:.3rem">Top Performing Pairs <span class="live-dot"></span><span style="color:#15803d;font-weight:600;text-transform:none;letter-spacing:0">Live</span></p>
+    </div>
+    <div class="pairs-grid reveal stagger">
+      <div class="pair-card reveal">
+        <div class="pair-name">XAUUSD <span class="pair-tag gold">Gold</span></div>
+        <div class="pair-rate" id="pairRateGold">89.4%</div>
+        <div class="pair-lbl">Win Rate</div>
+      </div>
+      <div class="pair-card reveal">
+        <div class="pair-name">EURUSD</div>
+        <div class="pair-rate" id="pairRateEur">86.1%</div>
+        <div class="pair-lbl">Win Rate</div>
+      </div>
+      <div class="pair-card reveal">
+        <div class="pair-name">GBPJPY</div>
+        <div class="pair-rate" id="pairRateGbp">87.6%</div>
+        <div class="pair-lbl">Win Rate</div>
+      </div>
+    </div>
+    <div class="perf-detail-grid reveal stagger">
+      <div class="pd-card reveal"><div class="pd-icon">&#128293;</div><div class="pd-val green">7 Weeks</div><div class="pd-lbl">Best Consecutive Win Streak</div></div>
+      <div class="pd-card reveal"><div class="pd-icon">&#128197;</div><div class="pd-val">Since 2023</div><div class="pd-lbl">Live Trading Start Date</div></div>
+      <div class="pd-card reveal"><div class="pd-icon">&#127970;</div><div class="pd-val">MT5 / MT4</div><div class="pd-lbl">Trading Platform</div></div>
+    </div>
+    <div style="margin-top:2rem" class="reveal">
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">Want the full detailed report for a specific bot? Request it directly and we will send it over.</p>
+      <a href="#" onclick="openTelegramReport();return false" class="btn-primary">Request Full Performance Report &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:var(--white);border-top:1px solid var(--border)">
+  <div class="wrap faq-section">
+    <div class="reveal sec-intro"><p class="section-eye">FAQ</p><h2 class="section-title">Common Questions</h2></div>
+    <div class="faq-wrap reveal">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I need trading experience to use Primus bots? <span class="faq-icon">+</span></button><div class="faq-a">No experience needed. The bots handle all execution automatically. You need a MetaTrader 5 or MT4 account and a broker, and our team walks you through the full setup during onboarding.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is the difference between MT5/MT4 and TradingView bots? <span class="faq-icon">+</span></button><div class="faq-a">MT5/MT4 bots run directly on your MetaTrader terminal. TradingView bots run in your browser, with no additional software needed. TradingView packages are $100 more due to added platform flexibility.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Why do some clients need a VPN? <span class="faq-icon">+</span></button><div class="faq-a">In certain regions, particularly the United States, some trading pairs or broker features may be restricted. Our Integrated VPN add-on bypasses these regional limitations directly within the bot, giving you unrestricted access to all pairs.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What does "below target" mean in the performance data? <span class="faq-icon">+</span></button><div class="faq-a">A "below target" week does NOT mean a losing week. It simply means the bot did not reach its full weekly target, but it still generated returns. In 3 years of live trading, only 6 out of 156 weeks fell below target. That is an 89% consistency rate.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is the weekly target guaranteed? <span class="faq-icon">+</span></button><div class="faq-a">Weekly targets are based on 3 years of live historical performance. Trading carries risk and past results are not a guarantee of future returns. Our bots are engineered for consistent, disciplined execution, and the 89% live track record speaks for itself.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is the 10% fee on all purchases? <span class="faq-icon">+</span></button><div class="faq-a">A 10% international transaction fee applies to all purchases. This is shown transparently on every package, and the price displayed is the final price. No hidden charges.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Why does the Gold bot only start from $1,000? <span class="faq-icon">+</span></button><div class="faq-a">XAUUSD (Gold) requires higher margin to trade safely. Packages from $1,000 are properly capitalised to handle Gold exposure without unnecessary account risk.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do Elite package purchases work? <span class="faq-icon">+</span></button><div class="faq-a">Elite packages are handled through a private acquisition process via Telegram. Click "Speak with an Advisor" and our team will personally guide you through purchase, setup, and onboarding.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--navy)">
+  <div class="wrap contact-section">
+    <div class="reveal sec-intro"><p class="section-eye">Get In Touch</p><h2 class="section-title">Let's Talk.</h2><p class="section-sub">Ready to purchase or just want answers? We respond to every serious inquiry personally.</p></div>
+    <div class="contact-grid reveal">
+      <div>
+        <p style="font-size:.86rem;color:rgba(255,255,255,.45);line-height:1.8">Whether you're ready to buy or still exploring, reach out. No pressure, just real answers from people who use the same systems we sell.</p>
+        <div class="c-links">
+          <a href="https://t.me/cateb007" target="_blank" class="c-link"><span class="c-link-icon">&#9992;</span><div class="c-link-body"><span class="c-link-label">Telegram Support</span><span class="c-link-val">Chat with us instantly</span><span class="c-badge">&#10003; Verified Telegram</span></div></a>
+          <a href="mailto:PrimusByVaneguardSupport@gmail.com" class="c-link"><span class="c-link-icon">&#9993;</span><div class="c-link-body"><span class="c-link-label">Email Support</span><span class="c-link-val">PrimusByVaneguardSupport@gmail.com</span><span class="c-badge">&#10003; Verified Email</span></div></a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <div class="cf-grp"><label>Your Name</label><input type="text" placeholder="John Doe"/></div>
+        <div class="cf-grp"><label>Email or Telegram</label><input type="text" placeholder="@username or email"/></div>
+        <div class="cf-grp"><label>Interested In</label><select><option>General Inquiry</option><option>MT5/MT4 Bots</option><option>TradingView Bots</option><option>Indicators</option><option>Elite Bot ($10K+)</option><option>Setup &amp; Lifetime Support</option><option>Integrated VPN</option><option>Full Performance Report</option></select></div>
+        <div class="cf-grp"><label>Message</label><textarea placeholder="Tell us about your trading goals..."></textarea></div>
+        <button class="cf-submit">Send Message &#8594;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="footer-brand-row"><img src="logo.png" alt="Primus"/><span class="footer-brand-name">Primus by Vaneguard</span></div><p>Intelligent automated trading systems built for ambitious individuals serious about long-term wealth creation.</p></div>
+      <div class="footer-col"><h4>Platform</h4><a href="#why">Why Primus</a><a href="#how">How It Works</a><a href="#pricing">Bot Packages</a><a href="#performance">Performance</a></div>
+      <div class="footer-col"><h4>Products</h4><a href="#pricing">MT5 / MT4 Bots</a><a href="#pricing">TradingView Bots</a><a href="#pricing">Indicators</a><a href="https://t.me/cateb007" target="_blank">Courses</a></div>
+      <div class="footer-col"><h4>Support</h4><a href="#faq">FAQ</a><a href="#contact">Contact Us</a><a href="https://t.me/cateb007" target="_blank">Telegram</a><a href="mailto:PrimusByVaneguardSupport@gmail.com">Email Support</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="legal.html">Terms of Service</a><a href="legal.html">Privacy Policy</a><a href="legal.html">Risk Disclaimer</a><a href="legal.html">License Agreement</a></div>
+    </div>
+    <p class="disclaimer">Risk Disclaimer: Trading in financial markets involves substantial risk of loss and is not suitable for all investors. Automated trading systems do not guarantee profits. Past performance is not indicative of future results. Weekly targets are based on historical data, and actual results may vary. "Below target" weeks indicate the bot did not reach its full weekly target but did not necessarily result in a net loss. Only invest capital you can afford to lose. Vaneguard / Primus does not provide regulated financial advice.</p>
+    <div class="footer-bottom"><span>&#169; 2025 Vaneguard. All rights reserved. Primus is a flagship product of Vaneguard.</span><span><a href="legal.html" style="color:rgba(255,255,255,.17);text-decoration:underline">Privacy Policy &#183; Terms of Service</a></span></div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobileMenu').classList.remove('open')}
+function switchTab(tab,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+tab).classList.add('active');btn.classList.add('active')}
+let cart={};
+function toggleCard(card,name,price){if(card.classList.contains('contact-card'))return;const btn=card.querySelector('.p-btn-sel');if(cart[name]){delete cart[name];card.classList.remove('selected');if(btn){btn.classList.remove('sel');btn.textContent='+ Add to Order'}}else{cart[name]=price;card.classList.add('selected');if(btn){btn.classList.add('sel');btn.textContent='Added'}}updateBar()}
+function toggleInd(card,name,price){const btn=card.querySelector('.p-btn-sel');if(cart[name]){delete cart[name];card.classList.remove('selected');if(btn){btn.classList.remove('sel');btn.textContent='+ Add to Order'}}else{cart[name]=price;card.classList.add('selected');if(btn){btn.classList.add('sel');btn.textContent='Added'}}updateBar()}
+function toggleAddon(row,name,price){if(row.classList.contains('checked')){delete cart[name];row.classList.remove('checked')}else{cart[name]=price;row.classList.add('checked')}updateBar()}
+function updateBar(){const keys=Object.keys(cart);const total=keys.reduce((s,k)=>s+cart[k],0);document.getElementById('cbTotal').textContent='$'+total.toLocaleString();document.getElementById('cbItems').textContent=keys.length?keys.join(' · '):'No items selected';document.getElementById('checkoutBar').classList.toggle('visible',keys.length>0)}
+function clearCart(){cart={};document.querySelectorAll('.p-card.selected,.ind-card.selected').forEach(c=>{c.classList.remove('selected');const b=c.querySelector('.p-btn-sel');if(b){b.classList.remove('sel');b.textContent='+ Add to Order'}});document.querySelectorAll('.card-addon-row.checked').forEach(r=>r.classList.remove('checked'));updateBar()}
+function openModal(){const keys=Object.keys(cart);if(!keys.length)return;const total=keys.reduce((s,k)=>s+cart[k],0);document.getElementById('modalRows').innerHTML=keys.map(k=>'<div class="modal-row"><span>'+k+'</span><span>$'+cart[k].toLocaleString()+'</span></div>').join('');document.getElementById('modalTotal').textContent='$'+total.toLocaleString();document.getElementById('modalOverlay').classList.add('open')}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open')}
+function openTelegram(){window.open('https://t.me/cateb007','_blank')}
+function openTelegramReport(){const msg=encodeURIComponent("Hey Cate, I would like a complete performance report for the \u2014 [insert bot name e.g. $1,000 Standard MT5 Bot] \u2014 please.");window.open('https://t.me/cateb007?text='+msg,'_blank')}
+function toggleFaq(btn){const item=btn.parentElement,open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open')}
+
+const seq=[];let wc=0,ac=0,mc=0;
+const missAt=[12,28,45,67,89,130];
+const aboveAt=[7,22,37,52,68,83,98,112,120,135,148];
+for(let i=0;i<156;i++){
+  if(missAt.includes(i)&&mc<6){seq.push('m');mc++}
+  else if(aboveAt.includes(i)&&ac<11){seq.push('a');ac++}
+  else{seq.push('w');wc++}
+}
+const heights=seq.map(t=>t==='w'?52+Math.random()*36:t==='a'?87+Math.random()*12:15+Math.random()*20);
+
+const perfEl=document.getElementById('perfChart');
+const startDate=new Date('2023-06-19');
+function weekDateLabel(weekIndex){
+  const d=new Date(startDate);
+  d.setDate(d.getDate()+weekIndex*7);
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+if(perfEl)seq.forEach((t,i)=>{
+  const b=document.createElement('div');
+  b.className='pc-bar '+t;
+  b.style.height=heights[i]+'%';
+  const label=t==='w'?'Hit Target':t==='a'?'Above Target':'Below Target';
+  b.title='Week '+(i+1)+' \u2014 '+weekDateLabel(i)+' \u2014 '+label;
+  perfEl.appendChild(b);
+});
+
+const pvEl=document.getElementById('pvChart');
+if(pvEl)seq.slice(0,40).forEach((t,i)=>{const b=document.createElement('div');b.className='pv-bar '+t;b.style.height=heights[i]+'%';pvEl.appendChild(b)});
+
+const circ=2*Math.PI*48;
+function animateDonut(){
+  const total=156,hit=139,above=11,miss=6;
+  const aboveArc=circ*(above/total),hitArc=circ*(hit/total),missArc=circ*(miss/total);
+  const ae=document.getElementById('donut-above'),he=document.getElementById('donut-hit'),me=document.getElementById('donut-miss');
+  if(ae){ae.style.strokeDasharray=aboveArc+' '+circ;ae.style.strokeDashoffset='0'}
+  if(he){he.style.strokeDasharray=hitArc+' '+circ;he.style.strokeDashoffset=(-aboveArc)+''}
+  if(me){me.style.strokeDasharray=missArc+' '+circ;me.style.strokeDashoffset=(-(aboveArc+hitArc))+''}
+}
+setTimeout(animateDonut,600);
+
+// Live micro-fluctuating win rates (overall + top pairs)
+// Fluctuation range: tight band, midpoint-anchored per spec (~0.86 to ~1.7 scale mapped to a small % drift)
+function fluctuate(base,minDrift,maxDrift){
+  const drift=(Math.random()*(maxDrift-minDrift)+minDrift)*(Math.random()<0.5?-1:1);
+  let val=base+drift;
+  if(val<base-1.5)val=base-1.5;
+  if(val>base+1.5)val=base+1.5;
+  return val;
+}
+function updateLiveRates(){
+  const overall=document.getElementById('liveWinRate');
+  const gold=document.getElementById('pairRateGold');
+  const eur=document.getElementById('pairRateEur');
+  const gbp=document.getElementById('pairRateGbp');
+  if(overall){
+    const v=fluctuate(89,0.02,0.7);
+    overall.style.opacity='0.4';
+    setTimeout(()=>{overall.textContent=v.toFixed(1)+'%';overall.style.opacity='1'},250);
+  }
+  if(gold){
+    const v=fluctuate(89.4,0.02,0.6);
+    gold.style.opacity='0.4';
+    setTimeout(()=>{gold.textContent=v.toFixed(1)+'%';gold.style.opacity='1'},250);
+  }
+  if(eur){
+    const v=fluctuate(86.1,0.02,0.8);
+    eur.style.opacity='0.4';
+    setTimeout(()=>{eur.textContent=v.toFixed(1)+'%';eur.style.opacity='1'},250);
+  }
+  if(gbp){
+    const v=fluctuate(87.6,0.02,0.7);
+    gbp.style.opacity='0.4';
+    setTimeout(()=>{gbp.textContent=v.toFixed(1)+'%';gbp.style.opacity='1'},250);
+  }
+}
+setTimeout(updateLiveRates,1200);
+setInterval(updateLiveRates,8000);
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>

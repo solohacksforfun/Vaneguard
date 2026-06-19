@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Legal | Primus by Vaneguard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#E8ECF2;--white:#FFFFFF;--navy:#061429;--royal:#1432A0;--blue:#1E40C8;
+  --muted:#5E6E8A;--border:#CDD3E0;--gold:#C9A84C;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--navy);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(232,236,242,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+.nav-logo img{height:38px;width:38px;object-fit:cover;border-radius:7px}
+.nav-logo-main{font-family:'Playfair Display',serif;font-weight:700;font-size:.92rem;color:var(--navy);display:block;line-height:1.1}
+.nav-logo-sub{font-size:.58rem;font-weight:500;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;display:block}
+.back-link{font-size:.82rem;color:var(--royal);text-decoration:none;font-weight:600}
+.wrap{max-width:780px;margin:0 auto;padding:120px 5vw 80px}
+.legal-eye{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.6rem;text-align:center}
+h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;text-align:center;margin-bottom:.8rem}
+.updated{text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:3rem}
+.tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:.4rem;max-width:fit-content;margin-left:auto;margin-right:auto}
+.tab-btn{padding:.55rem 1.1rem;border-radius:7px;font-size:.78rem;font-weight:600;border:none;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}
+.tab-btn.active{background:var(--navy);color:#fff}
+.doc-panel{display:none;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:2.5rem}
+.doc-panel.active{display:block}
+.doc-panel h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin:2rem 0 1rem}
+.doc-panel h2:first-child{margin-top:0}
+.doc-panel h3{font-size:1rem;font-weight:700;margin:1.5rem 0 .6rem;color:var(--royal)}
+.doc-panel p{font-size:.88rem;color:var(--muted);margin-bottom:1rem}
+.doc-panel ul{margin:0 0 1rem 1.3rem;color:var(--muted);font-size:.88rem}
+.doc-panel li{margin-bottom:.5rem}
+.warn-box{background:#FFF7E8;border:1px solid #F0DBA8;border-radius:10px;padding:1.1rem 1.3rem;margin:1.2rem 0;font-size:.85rem;color:#6B5A1F}
+.warn-box strong{display:block;margin-bottom:.4rem;color:#4A3D14}
+footer-note{display:block;text-align:center;font-size:.78rem;color:var(--muted);margin-top:3rem}
+@media(max-width:600px){.doc-panel{padding:1.6rem}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Primus"/>
+    <div><span class="nav-logo-main">Primus</span><span class="nav-logo-sub">by Vaneguard</span></div>
+  </a>
+  <a href="index.html" class="back-link">&larr; Back to Home</a>
+</nav>
+
+<div class="wrap">
+  <p class="legal-eye">Legal Center</p>
+  <h1>Terms, Policies &amp; Disclosures</h1>
+  <p class="updated">Last updated: June 2026 &middot; Primus by Vaneguard</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showDoc('terms',this)">Terms of Service</button>
+    <button class="tab-btn" onclick="showDoc('privacy',this)">Privacy Policy</button>
+    <button class="tab-btn" onclick="showDoc('disclaimer',this)">Risk Disclaimer</button>
+    <button class="tab-btn" onclick="showDoc('license',this)">License Agreement</button>
+  </div>
+
+  <!-- TERMS OF SERVICE -->
+  <div class="doc-panel active" id="doc-terms">
+    <h2>Terms of Service</h2>
+    <p>These Terms of Service ("Terms") govern your access to and use of products and services offered by Primus by Vaneguard ("Primus", "Vaneguard", "we", "us"), including all automated trading bots, indicators, and related digital tools. By purchasing, downloading, installing, configuring, or otherwise using any Primus product, you agree to be bound by these Terms in full.</p>
+
+    <h3>Acceptance of Terms</h3>
+    <p>By initiating setup, activation, installation, or any operational use of a Primus bot or indicator, you automatically acknowledge that all terms, conditions, limitations, and disclaimers described across this Legal Center are in effect from that moment forward. Continued usage signifies ongoing consent, and configuring the product constitutes binding acceptance of these provisions.</p>
+
+    <h3>License Grant</h3>
+    <p>Purchase of a Primus product grants you a non-exclusive, non-transferable, single-instance license to install and run the purchased software on the account(s) specified at time of purchase. Full license terms are detailed in the License Agreement tab of this page.</p>
+
+    <h3>Prohibited Conduct</h3>
+    <ul>
+      <li>Sharing, distributing, uploading, or leaking any Primus software to any website, forum, Telegram group, Discord server, or file-sharing platform.</li>
+      <li>Reverse-engineering, decompiling, or attempting to extract source code or proprietary logic from any Primus product.</li>
+      <li>Reselling, sublicensing, or operating Primus products on behalf of third-party clients, investors, or managed accounts without a separate written commercial agreement.</li>
+      <li>Removing, altering, or obscuring any copyright, trademark, or attribution notice contained in the product or its documentation.</li>
+      <li>Using the Primus or Vaneguard name, logo, or brand identifiers in marketing material without written permission.</li>
+    </ul>
+
+    <h3>Payments &amp; Fees</h3>
+    <p>All listed prices include a 10% international transaction fee, applied transparently at checkout. Packages priced at $10,000 and above are processed through a private acquisition process via Telegram rather than the standard checkout flow, due to payment gateway transaction limits.</p>
+
+    <h3>Refund Policy</h3>
+    <p>No refunds are granted under any circumstance except where explicitly stated otherwise in writing by Primus. Refund consideration, where applicable, is limited strictly to cases where a product fails to meet explicitly stated performance targets under demonstrably favorable and stable market conditions, and only where the buyer can evidence proper setup, correct usage, and compliance with all configuration guidelines. Misuse, unauthorized modification, improper configuration, or market-driven losses do not qualify for refund consideration.</p>
+
+    <h3>Support</h3>
+    <p>Support is provided through our official Telegram channel and email at the discretion of Primus by Vaneguard. While we aim to respond promptly to all serious inquiries, support response times and availability are not contractually guaranteed under these Terms.</p>
+
+    <h3>Changes to These Terms</h3>
+    <p>Primus by Vaneguard reserves the right to update or modify these Terms at any time. Continued use of any Primus product following changes constitutes acceptance of the revised Terms.</p>
+  </div>
+
+  <!-- PRIVACY POLICY -->
+  <div class="doc-panel" id="doc-privacy">
+    <h2>Privacy Policy</h2>
+    <p>This Privacy Policy explains how Primus by Vaneguard collects, uses, and protects information you provide when interacting with our website, purchasing our products, or contacting our support channels.</p>
+
+    <h3>Information We Collect</h3>
+    <ul>
+      <li>Contact details you voluntarily provide, such as your name, email address, and Telegram username, when reaching out for support or making a purchase inquiry.</li>
+      <li>Transaction information necessary to process and verify payments, including cryptocurrency wallet addresses or transaction IDs where applicable.</li>
+      <li>Communication records from support conversations conducted via Telegram or email, retained to maintain service quality and resolve disputes.</li>
+    </ul>
+
+    <h3>How We Use Your Information</h3>
+    <ul>
+      <li>To process purchases, deliver products, and provide setup and onboarding support.</li>
+      <li>To respond to inquiries and provide customer support.</li>
+      <li>To send performance reports or account-related communications you specifically request.</li>
+    </ul>
+
+    <h3>Data Security</h3>
+    <p>We take reasonable measures to protect your information, including not storing sensitive credentials such as broker passwords or API keys on our systems. You are responsible for the security of your own trading account credentials and should never share them with unauthorized parties.</p>
+
+    <h3>Data Sharing</h3>
+    <p>We do not sell, rent, or trade your personal information to third parties. Information may be disclosed only where required by law or to protect the rights, property, or safety of Primus by Vaneguard, our clients, or the public.</p>
+
+    <h3>Your Choices</h3>
+    <p>You may request that we delete personal information we hold about you by contacting our support email. Certain transaction records may be retained as required for legal or accounting purposes.</p>
+  </div>
+
+  <!-- RISK DISCLAIMER -->
+  <div class="doc-panel" id="doc-disclaimer">
+    <h2>Risk Disclaimer</h2>
+    <div class="warn-box">
+      <strong>Important Risk Warning</strong>
+      Trading foreign exchange, CFDs, gold, silver, indices, cryptocurrencies, commodities, and other financial instruments involves a substantial risk of loss and is not suitable for all investors. You may lose some or all of your invested capital. Past performance does not guarantee future results.
+    </div>
+
+    <h3>No Guarantee of Profit</h3>
+    <p>Primus by Vaneguard products are provided strictly on an "as is" basis, without warranties of any kind. No guarantee of profitability, stability, or uninterrupted service is made or implied. Performance outcomes may vary significantly based on market volatility, broker conditions, account configuration, and external economic events. Weekly targets displayed on our website and marketing materials are based on historical and live track record data; they are illustrative of past performance only and are not a promise of future results.</p>
+
+    <h3>Market &amp; Technical Risk Factors</h3>
+    <p>Numerous factors outside our control can affect performance, including but not limited to: market volatility and abnormal price movements, broker-side execution delays, slippage, spread widening, connectivity interruptions, platform downtime, news-driven volatility, liquidity shortages, regulatory changes, and VPN or network routing issues for clients in restricted regions. Our products do not eliminate these risks; they automate a defined trading methodology within them.</p>
+
+    <h3>Not Financial Advice</h3>
+    <p>Nothing provided by Primus by Vaneguard constitutes financial advice, investment advice, or a recommendation to engage in any particular trading strategy. Our bots and indicators are technical tools designed to automate or assist a pre-defined trading methodology. You remain solely responsible for all trading decisions, account monitoring, risk tolerance, and capital allocation. We strongly recommend testing on a demo account before committing live capital and consulting an independent financial adviser where appropriate.</p>
+
+    <h3>User Responsibility</h3>
+    <p>You acknowledge and accept full responsibility for monitoring your account, maintaining a stable trading environment (including any required VPN configuration), complying with your jurisdiction's financial regulations, and accepting that losses may occur and may exceed expectations. Only trade with capital you can afford to lose in its entirety.</p>
+
+    <h3>Limitation of Liability</h3>
+    <p>To the fullest extent permitted by law, Primus by Vaneguard shall not be liable for any direct, indirect, incidental, special, or consequential damages, including trading losses, data loss, or system failures, arising from the use of our products. The maximum aggregate liability of Primus by Vaneguard under any circumstance shall not exceed the original purchase price paid for the relevant product.</p>
+  </div>
+
+  <!-- LICENSE AGREEMENT -->
+  <div class="doc-panel" id="doc-license">
+    <h2>License Agreement</h2>
+    <p>This Single-Instance Commercial License Agreement ("Agreement") governs the use of all Primus by Vaneguard automated trading software ("the Software") and is entered into between Primus by Vaneguard ("Licensor") and the purchasing individual or entity ("Licensee", "you").</p>
+
+    <h3>Grant of License</h3>
+    <p>Subject to these terms, Primus by Vaneguard grants you a non-exclusive, non-transferable, single-instance license to install and run the purchased Software on the platform and account(s) specified at time of purchase (MetaTrader 4, MetaTrader 5, or TradingView, as applicable), for your own personal or business trading activity. You may make one backup copy of any provided files for archival purposes only.</p>
+
+    <h3>Restrictions</h3>
+    <ul>
+      <li>You may not copy, distribute, sublicense, resell, lease, rent, or transfer the Software to any third party except where explicitly permitted under a separate written resale agreement.</li>
+      <li>You may not share source files, compiled files, or any derivative work with any person or platform outside this license.</li>
+      <li>You may not use the Software on accounts beyond what was licensed at purchase without acquiring additional licenses.</li>
+      <li>You may not remove, alter, or obscure copyright notices or proprietary markings within the Software.</li>
+      <li>You may not reverse-engineer, decompile, or attempt to derive source code from any compiled version of the Software.</li>
+      <li>You may not use the Software as the basis for creating or selling a competing or derivative automated trading product.</li>
+      <li>You may not operate the Software on behalf of third-party clients or investors (PAMM, MAM, copy trading, signal services) without a separate written commercial agreement.</li>
+    </ul>
+
+    <h3>Intellectual Property</h3>
+    <p>All source code, algorithms, strategy logic, module designs, dashboard elements, and associated documentation remain the exclusive intellectual property of Primus by Vaneguard. This Agreement does not transfer any ownership rights. Primus™ and Vaneguard™ are proprietary trademarks; unauthorized use of any associated trademark, trade name, or brand identifier is strictly prohibited.</p>
+
+    <h3>No Warranty</h3>
+    <p>The Software is provided "as is" without warranty of any kind, express or implied, including warranties of merchantability or fitness for a particular purpose. Primus by Vaneguard does not warrant that the Software will be error-free, uninterrupted, or achieve any particular trading result.</p>
+
+    <h3>Updates &amp; Support</h3>
+    <p>Primus by Vaneguard may, at its sole discretion, provide updates, patches, or new versions of the Software. Clients who purchased the Setup &amp; Lifetime Support add-on receive ongoing updates and priority support for the lifetime of their license at no additional cost.</p>
+
+    <h3>Termination</h3>
+    <p>This license remains effective until terminated. It terminates automatically upon breach of any term herein. Upon termination, you must immediately cease all use of the Software and permanently delete all copies from all devices. Provisions relating to Intellectual Property, No Warranty, and Limitation of Liability survive termination indefinitely.</p>
+
+    <h3>Governing Terms</h3>
+    <p>This Agreement, together with the Terms of Service and Risk Disclaimer published in this Legal Center, constitutes the entire agreement between you and Primus by Vaneguard with respect to the Software, superseding all prior verbal or written understandings.</p>
+  </div>
+
+  <span class="footer-note">For questions about any of these documents, contact us via Telegram or email through our <a href="index.html#contact" style="color:var(--royal);font-weight:600;">Contact page</a>.</span>
+</div>
+
+<script>
+function showDoc(id, btn) {
+  document.querySelectorAll('.doc-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('doc-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 100, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
