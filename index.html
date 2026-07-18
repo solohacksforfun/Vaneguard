@@ -369,9 +369,67 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
   .ind-grid{grid-template-columns:1fr}
   .tab-bar{max-width:100%}
 }
+
+*{-webkit-tap-highlight-color:transparent}
+html{overflow-x:hidden}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--royal),var(--blue-lt));z-index:300;border-radius:0 2px 2px 0}
+
+.nav-links a.active{color:var(--navy)}
+.nav-links a.active::after{width:100%}
+
+#hero{padding-top:150px}
+#hero .hero-ticker{position:absolute;top:64px;left:0;right:0;height:46px;overflow:hidden;z-index:2;background:rgba(255,255,255,.5);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+#hero .hero-ticker .tradingview-widget-container{height:46px}
+#hero::before{content:'';position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(20,50,160,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(20,50,160,.05) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 42%,#000 25%,transparent 72%);mask-image:radial-gradient(ellipse 75% 65% at 50% 42%,#000 25%,transparent 72%)}
+h1 span{background:linear-gradient(100deg,var(--royal) 20%,var(--blue-lt) 50%,var(--royal) 80%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 7s linear infinite}
+@keyframes gradShift{to{background-position:200% center}}
+#hero .scroll-hint{position:absolute;bottom:20px;left:50%;margin-left:-11px;width:22px;height:36px;border:2px solid var(--sl);border-radius:12px;z-index:1}
+.scroll-hint::before{content:'';position:absolute;top:6px;left:50%;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--royal);animation:scrollDot 1.9s ease-in-out infinite}
+@keyframes scrollDot{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(13px)}}
+
+#primus{background:radial-gradient(ellipse 70% 55% at 88% 0%,rgba(65,105,225,.14),transparent 62%),radial-gradient(ellipse 50% 40% at 6% 100%,rgba(123,167,245,.07),transparent 60%),var(--navy)}
+#contact{background:radial-gradient(ellipse 65% 50% at 10% 6%,rgba(65,105,225,.12),transparent 62%),var(--navy)}
+
+.step-card,.p-card,.ind-card,.perf-card,.perf-stat-card,.pair-card,.pd-card,.r-card{box-shadow:0 1px 2px rgba(6,20,41,.03),0 12px 32px -20px rgba(6,20,41,.14)}
+.btn-primary:active,.btn-outline:active,.p-btn:active,.tab-btn:active,.card-addon-row:active,.c-link:active{transform:scale(.97)}
+
+.addons-hdr{display:flex;align-items:center;justify-content:space-between;gap:.5rem;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.addons-tap{font-size:.6rem;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--royal)}
+.card-addon-row{border:1px solid var(--border);background:var(--bg2);padding:.55rem .7rem;border-radius:9px;transition:border-color .15s,background .15s,transform .1s}
+.card-addon-row:hover{border-color:var(--royal);background:#EEF2FF}
+.addon-plus{width:18px;height:18px;flex-shrink:0;border-radius:50%;background:var(--royal);color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+
+.swipe-hint{display:none;font-size:.66rem;color:var(--royal);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:.7rem;animation:swipeNudge 2.2s ease-in-out infinite}
+@keyframes swipeNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+
+.tg-fab{position:fixed;bottom:1.1rem;right:1.1rem;z-index:250;display:flex;align-items:center;gap:.45rem;background:var(--royal);color:#fff;text-decoration:none;padding:.8rem .95rem;border-radius:50px;box-shadow:0 10px 30px rgba(20,50,160,.35);font-size:1rem;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .35s ease,transform .35s ease,background .2s}
+.tg-fab.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.tg-fab:hover{background:var(--blue)}
+.tg-fab-lbl{font-size:.78rem;font-weight:600;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .4s ease}
+.tg-fab:hover .tg-fab-lbl{max-width:110px}
+.tg-fab::before{content:'';position:absolute;inset:0;border-radius:50px;border:2px solid rgba(65,105,225,.55);animation:fabPulse 2.6s ease-out infinite}
+@keyframes fabPulse{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(1.3);opacity:0}}
+
+@media(max-width:900px){
+  .reviews-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;margin:2.5rem -5vw 0;padding:0 5vw .9rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .reviews-grid::-webkit-scrollbar{display:none}
+  .r-card{min-width:min(84%,340px);scroll-snap-align:center}
+  .swipe-hint{display:block}
+}
+@media(max-width:580px){
+  #hero{padding-top:140px}
+  #hero .hero-orb.o1{width:250px;height:250px;filter:blur(60px)}
+  #hero .hero-orb.o2{width:210px;height:210px;filter:blur(60px)}
+  .why-card,.step-card{padding:1.5rem 1.3rem}
+  .perf-card{padding:1.4rem 1.1rem}
+  .tg-fab{padding:.7rem .85rem}
+}
+@media(max-height:700px){#hero .scroll-hint{display:none}}
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <nav>
   <a href="#hero" class="nav-logo">
@@ -407,6 +465,14 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
 <section id="hero">
   <div class="hero-orb o1"></div>
   <div class="hero-orb o2"></div>
+  <div class="hero-ticker">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+      {"symbols":[{"proName":"OANDA:XAUUSD","title":"Gold"},{"proName":"FX:EURUSD","title":"EUR/USD"},{"proName":"FX:GBPJPY","title":"GBP/JPY"},{"proName":"BINANCE:BTCUSDT","title":"Bitcoin"},{"proName":"BINANCE:ETHUSDT","title":"Ethereum"},{"proName":"NASDAQ:NDX","title":"Nasdaq 100"}],"showSymbolLogo":true,"isTransparent":true,"displayMode":"adaptive","colorTheme":"light","locale":"en"}
+      </script>
+    </div>
+  </div>
   <div class="hero-eye">Intelligent Trading Systems</div>
   <h1>Trade Smarter.<br/><span>Generational Wealth</span><br/>Starts Here.</h1>
   <p class="hero-body">The future of wealth creation is being shaped by technology. Powered by Primus, Vaneguard equips ambitious individuals with intelligent tools and digital solutions designed to help them trade smarter, grow their wealth, and create generational impact.</p>
@@ -423,6 +489,7 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
     <div class="trust-div"></div>
     <div class="trust-item"><span class="trust-num">156</span><span class="trust-lbl">Weeks Tracked</span></div>
   </div>
+  <div class="scroll-hint"></div>
 </section>
 
 <section id="why" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
@@ -457,7 +524,7 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
   </div>
 </section>
 
-<section id="primus" style="background:var(--navy)">
+<section id="primus">
   <div class="wrap primus-section">
     <div class="reveal sec-intro">
       <p class="section-eye">Powered by Primus</p>
@@ -505,8 +572,9 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
             <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li><li>MT5 &amp; MT4 compatible</li></ul>
             <a href="https://whop.com/checkout/plan_cQSKskKy0jTV3" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
             <div class="card-addons">
-              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
-              <a href="https://whop.com/checkout/plan_LGizHu89IZb3p" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$150 &#8594;</span></a>
+              <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
+              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://whop.com/checkout/plan_LGizHu89IZb3p" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$150 &#8594;</span></a>
             </div>
         </div>
         <div class="p-card">
@@ -514,8 +582,9 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
             <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li><li>MT5 &amp; MT4 compatible</li></ul>
             <a href="https://whop.com/checkout/plan_O2JixTOXv9uZp" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
             <div class="card-addons">
-              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
-              <a href="https://whop.com/checkout/plan_HKLEmoGS65ohT" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$200 &#8594;</span></a>
+              <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
+              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://whop.com/checkout/plan_HKLEmoGS65ohT" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$200 &#8594;</span></a>
             </div>
         </div>
       </div>
@@ -527,8 +596,9 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
             <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Multi-strategy engine</li><li>Advanced risk logic</li><li>MT5 &amp; MT4 compatible</li></ul>
             <a href="https://whop.com/checkout/plan_yF4Nc9RLqZMhU" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
             <div class="card-addons">
-              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
-              <a href="https://whop.com/checkout/plan_WinMxyztRnzNw" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$300 &#8594;</span></a>
+              <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
+              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://whop.com/checkout/plan_WinMxyztRnzNw" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$300 &#8594;</span></a>
             </div>
         </div>
       </div>
@@ -539,8 +609,9 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
             <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Multi-strategy engine</li><li>Priority support</li><li>MT5 &amp; MT4 compatible</li></ul>
             <a href="https://whop.com/checkout/plan_HAZiWVgZfv14i" target="_blank" class="p-btn p-btn-sel" style="display:block;text-align:center;text-decoration:none">Buy Now &#8594;</a>
             <div class="card-addons">
-              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
-              <a href="https://whop.com/checkout/plan_vkMsb8P9o9wDf" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$350 &#8594;</span></a>
+              <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
+              <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
+              <a href="https://whop.com/checkout/plan_vkMsb8P9o9wDf" target="_blank" class="card-addon-row" style="text-decoration:none"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$350 &#8594;</span></a>
             </div>
         </div>
         <div class="p-card contact-card">
@@ -614,6 +685,7 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
       <p class="section-eye" style="color:var(--gold);font-family:'Playfair Display',serif;font-size:.82rem;letter-spacing:.1em">Social Proof</p>
       <h2 class="section-title">What Our Top Clients Say</h2>
       <p class="section-sub">Top clients from Standard tier and above. Real experiences from $1,000 to $20,000 package holders.</p>
+      <p class="swipe-hint">Swipe to read more &#8594;</p>
     </div>
     <div class="reviews-grid reveal">
       <div class="r-card"><div class="r-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="r-text">"I always knew AI was the future of making money. The way technology has been evolving, I knew this was the move. Primus confirmed everything I believed. AI trading genuinely changed my life for the better. I just wish time zones could be managed a little more smoothly."</p><div class="r-author"><div class="r-av">DK</div><div><div class="r-name">David K.</div><div class="r-country">&#127482;&#127480; United States</div><div class="r-pkg">$1,000 Standard Bot</div></div></div></div>
@@ -739,7 +811,7 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
   </div>
 </section>
 
-<section id="contact" style="background:var(--navy)">
+<section id="contact">
   <div class="wrap contact-section">
     <div class="reveal sec-intro"><p class="section-eye">Get In Touch</p><h2 class="section-title">Let's Talk.</h2><p class="section-sub">Ready to purchase or just want answers? We respond to every serious inquiry personally.</p></div>
     <div class="contact-grid reveal">
@@ -775,6 +847,8 @@ nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
     <div class="footer-bottom"><span>&#169; 2025 Vaneguard. All rights reserved. Primus is a flagship product of Vaneguard.</span><span><a href="legal.html" style="color:rgba(255,255,255,.17);text-decoration:underline">Privacy Policy &#183; Terms of Service</a></span></div>
   </div>
 </footer>
+
+<a href="https://t.me/cateb007" target="_blank" class="tg-fab" id="tgFab" aria-label="Chat with us on Telegram"><span>&#9992;</span><span class="tg-fab-lbl">Chat with us</span></a>
 
 <script>
 function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open')}
@@ -860,9 +934,23 @@ function countUp(el){
 const countObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);countObs.unobserve(e.target)}})},{threshold:0.6});
 document.querySelectorAll('.trust-num,.psc-val,.pvs-val').forEach(el=>countObs.observe(el));
 
-// Nav shadow once the page scrolls
+// Nav shadow, scroll progress bar, floating chat button
 const navEl=document.querySelector('nav');
-window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',window.scrollY>10),{passive:true});
+const progEl=document.getElementById('scrollProgress');
+const fabEl=document.getElementById('tgFab');
+function onScrollUI(){
+  navEl.classList.toggle('scrolled',window.scrollY>10);
+  if(progEl){const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;progEl.style.width=(max>0?(h.scrollTop/max*100):0)+'%'}
+  if(fabEl)fabEl.classList.toggle('show',window.scrollY>520);
+}
+window.addEventListener('scroll',onScrollUI,{passive:true});
+onScrollUI();
+
+// Highlight the nav link for the section currently in view
+const navMap={};
+document.querySelectorAll('.nav-links a').forEach(a=>{navMap[a.getAttribute('href').slice(1)]=a});
+const spyObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&navMap[e.target.id]){document.querySelectorAll('.nav-links a.active').forEach(a=>a.classList.remove('active'));navMap[e.target.id].classList.add('active')}})},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>spyObs.observe(s));
 
 // Live micro-fluctuating win rates (overall + top pairs)
 // Fluctuation range: tight band, midpoint-anchored per spec (~0.86 to ~1.7 scale mapped to a small % drift)
