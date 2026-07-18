@@ -305,6 +305,41 @@ footer{background:#04101F;border-top:1px solid rgba(255,255,255,.07);padding:2.8
 .disclaimer{font-size:.67rem;color:rgba(255,255,255,.17);line-height:1.65;max-width:760px;margin-bottom:1.3rem}
 .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.68rem;color:rgba(255,255,255,.17)}
 
+nav{transition:box-shadow .3s ease}
+nav.scrolled{box-shadow:0 6px 24px rgba(6,20,41,.09)}
+
+#hero{position:relative;overflow:hidden}
+#hero>:not(.hero-orb){position:relative;z-index:1}
+#hero .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+#hero .hero-orb.o1{width:420px;height:420px;background:rgba(30,64,200,.11);top:-120px;left:-100px;animation:orbFloat 16s ease-in-out infinite alternate}
+#hero .hero-orb.o2{width:360px;height:360px;background:rgba(201,168,76,.10);bottom:-100px;right:-80px;animation:orbFloat 20s ease-in-out 2s infinite alternate-reverse}
+@keyframes orbFloat{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,30px) scale(1.12)}}
+@keyframes heroRise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.hero-eye{animation:heroRise .7s .05s cubic-bezier(.16,1,.3,1) both}
+#hero h1{animation:heroRise .8s .15s cubic-bezier(.16,1,.3,1) both}
+.hero-body{animation:heroRise .8s .28s cubic-bezier(.16,1,.3,1) both}
+.hero-btns{animation:heroRise .8s .4s cubic-bezier(.16,1,.3,1) both}
+.hero-trust{animation:heroRise .8s .55s cubic-bezier(.16,1,.3,1) both}
+
+.btn-primary{position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg)}
+@keyframes sheen{from{left:-80%}to{left:130%}}
+.btn-primary:hover::after{animation:sheen .7s ease}
+
+.pc-bar,.pv-bar{transform:scaleY(0);transform-origin:bottom;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.chart-grow .pc-bar,.chart-grow .pv-bar{transform:scaleY(1)}
+.donut-svg circle{transition:stroke-dasharray 1s ease,stroke-dashoffset 1s ease}
+.psc-val,.pair-rate{transition:opacity .3s,transform .3s}
+
+.pair-chart{height:150px;margin:.4rem 0 .8rem;border-radius:9px;overflow:hidden;border:1px solid var(--border);background:var(--bg2)}
+.pair-chart .tradingview-widget-container{height:100%;width:100%}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .pc-bar,.pv-bar{transform:scaleY(1)}
+  .reveal,.reveal-left,.reveal-right{opacity:1;transform:none}
+}
+
 @media(max-width:900px){
   .why-grid{grid-template-columns:1fr 1fr}
   .why-card:nth-child(3n){border-right:1px solid var(--border)}
@@ -370,6 +405,8 @@ footer{background:#04101F;border-top:1px solid rgba(255,255,255,.07);padding:2.8
 </div>
 
 <section id="hero">
+  <div class="hero-orb o1"></div>
+  <div class="hero-orb o2"></div>
   <div class="hero-eye">Intelligent Trading Systems</div>
   <h1>Trade Smarter.<br/><span>Generational Wealth</span><br/>Starts Here.</h1>
   <p class="hero-body">The future of wealth creation is being shaped by technology. Powered by Primus, Vaneguard equips ambitious individuals with intelligent tools and digital solutions designed to help them trade smarter, grow their wealth, and create generational impact.</p>
@@ -636,16 +673,40 @@ footer{background:#04101F;border-top:1px solid rgba(255,255,255,.07);padding:2.8
     <div class="pairs-grid reveal stagger">
       <div class="pair-card reveal">
         <div class="pair-name">XAUUSD <span class="pair-tag gold">Gold</span></div>
+        <div class="pair-chart">
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {"symbol":"OANDA:XAUUSD","width":"100%","height":150,"locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":false,"largeChartUrl":""}
+            </script>
+          </div>
+        </div>
         <div class="pair-rate" id="pairRateGold">89.4%</div>
         <div class="pair-lbl">Win Rate</div>
       </div>
       <div class="pair-card reveal">
         <div class="pair-name">EURUSD</div>
+        <div class="pair-chart">
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {"symbol":"FX:EURUSD","width":"100%","height":150,"locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":false,"largeChartUrl":""}
+            </script>
+          </div>
+        </div>
         <div class="pair-rate" id="pairRateEur">86.1%</div>
         <div class="pair-lbl">Win Rate</div>
       </div>
       <div class="pair-card reveal">
         <div class="pair-name">GBPJPY</div>
+        <div class="pair-chart">
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {"symbol":"FX:GBPJPY","width":"100%","height":150,"locale":"en","dateRange":"1D","colorTheme":"light","isTransparent":true,"autosize":false,"largeChartUrl":""}
+            </script>
+          </div>
+        </div>
         <div class="pair-rate" id="pairRateGbp">87.6%</div>
         <div class="pair-lbl">Win Rate</div>
       </div>
@@ -769,7 +830,39 @@ function animateDonut(){
   if(he){he.style.strokeDasharray=hitArc+' '+circ;he.style.strokeDashoffset=(-aboveArc)+''}
   if(me){me.style.strokeDasharray=missArc+' '+circ;me.style.strokeDashoffset=(-(aboveArc+hitArc))+''}
 }
-setTimeout(animateDonut,600);
+const donutEl=document.querySelector('.donut-svg');
+if(donutEl){
+  const donutObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){setTimeout(animateDonut,200);donutObs.disconnect()}})},{threshold:0.4});
+  donutObs.observe(donutEl);
+}else{setTimeout(animateDonut,600)}
+
+// Bars grow in when their chart scrolls into view
+[perfEl,pvEl].forEach(chart=>{
+  if(!chart)return;
+  chart.querySelectorAll('.pc-bar,.pv-bar').forEach((b,i)=>{b.style.transitionDelay=(i*4)+'ms'});
+  const growObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){chart.classList.add('chart-grow');growObs.disconnect()}})},{threshold:0.3});
+  growObs.observe(chart);
+});
+
+// Count-up stat numbers on first view
+function countUp(el){
+  const raw=el.textContent.trim();
+  const m=raw.match(/^(\d+(?:\.\d+)?)(%?)$/);
+  if(!m)return;
+  const target=parseFloat(m[1]),suffix=m[2],dec=m[1].includes('.')?1:0,dur=1400,t0=performance.now();
+  function frame(t){
+    const p=Math.min((t-t0)/dur,1),eased=1-Math.pow(1-p,3);
+    el.textContent=(target*eased).toFixed(dec)+suffix;
+    if(p<1)requestAnimationFrame(frame);else el.textContent=raw;
+  }
+  requestAnimationFrame(frame);
+}
+const countObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);countObs.unobserve(e.target)}})},{threshold:0.6});
+document.querySelectorAll('.trust-num,.psc-val,.pvs-val').forEach(el=>countObs.observe(el));
+
+// Nav shadow once the page scrolls
+const navEl=document.querySelector('nav');
+window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',window.scrollY>10),{passive:true});
 
 // Live micro-fluctuating win rates (overall + top pairs)
 // Fluctuation range: tight band, midpoint-anchored per spec (~0.86 to ~1.7 scale mapped to a small % drift)
@@ -780,31 +873,19 @@ function fluctuate(base,minDrift,maxDrift){
   if(val>base+1.5)val=base+1.5;
   return val;
 }
+function liveTick(el,v){
+  el.style.opacity='0.35';el.style.transform='translateY(3px)';
+  setTimeout(()=>{el.textContent=v.toFixed(1)+'%';el.style.opacity='1';el.style.transform='translateY(0)'},250);
+}
 function updateLiveRates(){
   const overall=document.getElementById('liveWinRate');
   const gold=document.getElementById('pairRateGold');
   const eur=document.getElementById('pairRateEur');
   const gbp=document.getElementById('pairRateGbp');
-  if(overall){
-    const v=fluctuate(89,0.02,0.7);
-    overall.style.opacity='0.4';
-    setTimeout(()=>{overall.textContent=v.toFixed(1)+'%';overall.style.opacity='1'},250);
-  }
-  if(gold){
-    const v=fluctuate(89.4,0.02,0.6);
-    gold.style.opacity='0.4';
-    setTimeout(()=>{gold.textContent=v.toFixed(1)+'%';gold.style.opacity='1'},250);
-  }
-  if(eur){
-    const v=fluctuate(86.1,0.02,0.8);
-    eur.style.opacity='0.4';
-    setTimeout(()=>{eur.textContent=v.toFixed(1)+'%';eur.style.opacity='1'},250);
-  }
-  if(gbp){
-    const v=fluctuate(87.6,0.02,0.7);
-    gbp.style.opacity='0.4';
-    setTimeout(()=>{gbp.textContent=v.toFixed(1)+'%';gbp.style.opacity='1'},250);
-  }
+  if(overall)liveTick(overall,fluctuate(89,0.02,0.7));
+  if(gold)liveTick(gold,fluctuate(89.4,0.02,0.6));
+  if(eur)liveTick(eur,fluctuate(86.1,0.02,0.8));
+  if(gbp)liveTick(gbp,fluctuate(87.6,0.02,0.7));
 }
 setTimeout(updateLiveRates,1200);
 setInterval(updateLiveRates,8000);
