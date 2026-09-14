@@ -1,13 +1,12 @@
-/* ══════════════════════════════════════════════════════
-   PRIMUS BY VANEGUARD — Page logic
-   Tabs, cart/checkout, modal, FAQ, performance charts, live
-   rate ticks — ported as-is from the original build.
-   ══════════════════════════════════════════════════════ */
+/* Primus by Vaneguard
+   Page logic: package tabs, order summary, FAQ, performance charts. */
 function switchTab(tab,btn){
-  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
-  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
-  document.getElementById('tab-'+tab).classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');p.hidden=true;});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');b.setAttribute('aria-selected','false');});
+  var panel=document.getElementById('tab-'+tab);
+  if(panel){panel.classList.add('active');panel.hidden=false;}
   btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
 }
 
 var cart={};
@@ -52,21 +51,40 @@ function openModal(){
   var total=keys.reduce(function(s,k){return s+cart[k];},0);
   document.getElementById('modalRows').innerHTML=keys.map(function(k){return '<div class="modal-row"><span>'+k+'</span><span>$'+cart[k].toLocaleString()+'</span></div>';}).join('');
   document.getElementById('modalTotal').textContent='$'+total.toLocaleString();
-  document.getElementById('modalOverlay').classList.add('open');
+  window._modalOpener=document.activeElement;
+  var ov=document.getElementById('modalOverlay');
+  ov.classList.add('open');
+  var c=ov.querySelector('.modal-close'); if(c)c.focus();
 }
-function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  if(window._modalOpener&&window._modalOpener.focus) window._modalOpener.focus();
+}
+addEventListener('keydown',function(e){
+  var o=document.getElementById('modalOverlay');
+  if(e.key==='Escape'&&o&&o.classList.contains('open')) closeModal();
+});
 function openTelegram(){window.open('https://t.me/cateb007','_blank');}
-function openTelegramReport(){
-  var msg=encodeURIComponent("Hey Cate, I would like a complete performance report for the \u2014 [insert bot name e.g. $1,000 Standard MT5 Bot] \u2014 please.");
-  window.open('https://t.me/cateb007?text='+msg,'_blank');
-}
 function toggleFaq(btn){
   var item=btn.parentElement, open=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
-  if(!open)item.classList.add('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){
+    i.classList.remove('open');
+    var q=i.querySelector('.faq-q'); if(q) q.setAttribute('aria-expanded','false');
+  });
+  if(!open){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
 }
 
 document.addEventListener('DOMContentLoaded',function(){
+
+  /* packages page: #mt5 / #tv / #ind in the URL selects that tab */
+  function tabFromHash(){
+    var h=(location.hash||'').replace('#','');
+    var btns=document.querySelectorAll('.tab-btn');
+    var idx={mt5:0,tv:1,ind:2}[h];
+    if(idx!==undefined&&btns[idx]&&document.getElementById('tab-'+h)) switchTab(h,btns[idx]);
+  }
+  tabFromHash();
+  addEventListener('hashchange',tabFromHash);
 
   /* seeded 156-week performance sequence */
   var seq=[],wc=0,ac=0,mc=0;
@@ -77,25 +95,23 @@ document.addEventListener('DOMContentLoaded',function(){
     else if(aboveAt.includes(i)&&ac<11){seq.push('a');ac++;}
     else{seq.push('w');wc++;}
   }
-  var heights=seq.map(function(t){return t==='w'?52+Math.random()*36:t==='a'?87+Math.random()*12:15+Math.random()*20;});
+  function spread(i,lo,hi){var x=Math.sin(i*12.9898)*43758.5453;x=x-Math.floor(x);return lo+x*(hi-lo);}
+  var heights=seq.map(function(t,i){return t==='w'?spread(i,52,88):t==='a'?spread(i,87,99):spread(i,15,35);});
 
   var perfEl=document.getElementById('perfChart');
-  var startDate=new Date('2023-06-19');
-  function weekDateLabel(weekIndex){
-    var d=new Date(startDate);
-    d.setDate(d.getDate()+weekIndex*7);
-    return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  if(perfEl){
+    perfEl.setAttribute('role','img');
+    perfEl.setAttribute('aria-label','156 weeks of results: 139 weeks hit target, 11 weeks above target, 6 weeks below target.');
+    seq.forEach(function(t,i){
+      var b=document.createElement('div');
+      b.className='pc-bar '+t;
+      b.style.height=heights[i]+'%';
+      perfEl.appendChild(b);
+    });
   }
-  if(perfEl)seq.forEach(function(t,i){
-    var b=document.createElement('div');
-    b.className='pc-bar '+t;
-    b.style.height=heights[i]+'%';
-    var label=t==='w'?'Hit Target':t==='a'?'Above Target':'Below Target';
-    b.title='Week '+(i+1)+' \u2014 '+weekDateLabel(i)+' \u2014 '+label;
-    perfEl.appendChild(b);
-  });
 
   var pvEl=document.getElementById('pvChart');
+  if(pvEl){pvEl.setAttribute('role','img');pvEl.setAttribute('aria-label','Results for the last 40 weeks, by whether the weekly target was met.');}
   if(pvEl)seq.slice(0,40).forEach(function(t,i){
     var b=document.createElement('div');
     b.className='pv-bar '+t;
@@ -125,44 +141,5 @@ document.addEventListener('DOMContentLoaded',function(){
     var growObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){chart.classList.add('chart-grow');growObs.disconnect();}});},{threshold:0.3});
     growObs.observe(chart);
   });
-
-  function countUp(el){
-    var raw=el.textContent.trim();
-    var m=raw.match(/^(\d+(?:\.\d+)?)(%?)$/);
-    if(!m)return;
-    var target=parseFloat(m[1]),suffix=m[2],dec=m[1].includes('.')?1:0,dur=1400,t0=performance.now();
-    function frame(t){
-      var p=Math.min((t-t0)/dur,1),eased=1-Math.pow(1-p,3);
-      el.textContent=(target*eased).toFixed(dec)+suffix;
-      if(p<1)requestAnimationFrame(frame);else el.textContent=raw;
-    }
-    requestAnimationFrame(frame);
-  }
-  var countObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);countObs.unobserve(e.target);}});},{threshold:0.6});
-  document.querySelectorAll('.trust-num,.stat-v,.pvs-val').forEach(function(el){countObs.observe(el);});
-
-  function fluctuate(base,minDrift,maxDrift){
-    var drift=(Math.random()*(maxDrift-minDrift)+minDrift)*(Math.random()<0.5?-1:1);
-    var val=base+drift;
-    if(val<base-1.5)val=base-1.5;
-    if(val>base+1.5)val=base+1.5;
-    return val;
-  }
-  function liveTick(el,v){
-    el.style.opacity='0.35';el.style.transform='translateY(3px)';
-    setTimeout(function(){el.textContent=v.toFixed(1)+'%';el.style.opacity='1';el.style.transform='translateY(0)';},250);
-  }
-  function updateLiveRates(){
-    var overall=document.getElementById('liveWinRate');
-    var gold=document.getElementById('pairRateGold');
-    var eur=document.getElementById('pairRateEur');
-    var gbp=document.getElementById('pairRateGbp');
-    if(overall)liveTick(overall,fluctuate(89,0.02,0.7));
-    if(gold)liveTick(gold,fluctuate(89.4,0.02,0.6));
-    if(eur)liveTick(eur,fluctuate(86.1,0.02,0.8));
-    if(gbp)liveTick(gbp,fluctuate(87.6,0.02,0.7));
-  }
-  setTimeout(updateLiveRates,1200);
-  setInterval(updateLiveRates,8000);
 
 });
