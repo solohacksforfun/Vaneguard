@@ -1,11 +1,6 @@
-/* ══════════════════════════════════════════════════════
-   PRIMUS BY VANEGUARD — Interaction Engine
-   Nav / progress / mobile menu / magnetic buttons / tilt cards /
-   scroll reveals / procedural sphere — ported from the Josh
-   Automated engine. Structure and motion identical; the sphere
-   is generated at runtime (no fixed shape data) and colored to
-   the Primus palette.
-   ══════════════════════════════════════════════════════ */
+/* Primus by Vaneguard
+   Interaction: navigation, reading progress, mobile menu,
+   scroll reveals, and the point-sphere canvas. */
 
 /* ── NAV / PROGRESS / MOBILE MENU ── */
 (function(){
@@ -23,19 +18,34 @@
     if(stop) stop.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
     var burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
     if(burger&&mnav){
-      burger.addEventListener('click',function(){mnav.classList.add('open')});
-      mnav.querySelectorAll('a,.mclose').forEach(function(el){el.addEventListener('click',function(){mnav.classList.remove('open')})});
+      var openMenu=function(){mnav.classList.add('open');burger.setAttribute('aria-expanded','true');var f=mnav.querySelector('.mclose');if(f)f.focus();};
+      var closeMenu=function(){mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');};
+      burger.addEventListener('click',openMenu);
+      mnav.querySelectorAll('a,.mclose').forEach(function(el){el.addEventListener('click',closeMenu)});
+      addEventListener('keydown',function(e){if(e.key==='Escape'&&mnav.classList.contains('open')){closeMenu();burger.focus();}});
     }
-    /* highlight the nav link for the section in view */
+    /* active link: match current page, then section in view */
+    var here=location.pathname.split('/').pop()||'index.html';
+    document.querySelectorAll('.nav-links a.top').forEach(function(a){
+      var href=a.getAttribute('href')||'';
+      var file=href.split('#')[0]||'index.html';
+      if(file===here&&href.indexOf('#')===-1) a.classList.add('active');
+    });
     var navMap={};
-    document.querySelectorAll('.nav-links a.top[href^="#"]').forEach(function(a){navMap[a.getAttribute('href').slice(1)]=a;});
-    var spyObs=new IntersectionObserver(function(es){es.forEach(function(e){
-      if(e.isIntersecting&&navMap[e.target.id]){
-        document.querySelectorAll('.nav-links a.top.active').forEach(function(a){a.classList.remove('active');});
-        navMap[e.target.id].classList.add('active');
-      }
-    });},{rootMargin:'-40% 0px -55% 0px'});
-    document.querySelectorAll('section[id]').forEach(function(s){spyObs.observe(s);});
+    document.querySelectorAll('.nav-links a.top').forEach(function(a){
+      var href=a.getAttribute('href')||'';
+      var file=href.split('#')[0]||'index.html', hash=href.split('#')[1];
+      if(hash&&file===here) navMap[hash]=a;
+    });
+    if(Object.keys(navMap).length){
+      var spyObs=new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting&&navMap[e.target.id]){
+          document.querySelectorAll('.nav-links a.top.active').forEach(function(a){a.classList.remove('active');});
+          navMap[e.target.id].classList.add('active');
+        }
+      });},{rootMargin:'-40% 0px -55% 0px'});
+      document.querySelectorAll('section[id]').forEach(function(s){spyObs.observe(s);});
+    }
   }
   document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
 })();
@@ -47,54 +57,21 @@
   document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
 })();
 
-/* ── MAGNETIC BUTTONS (desktop) ── */
-(function(){
-  if(matchMedia('(hover:none)').matches) return;
-  function init(){
-    document.querySelectorAll('.btn-g,.btn-o').forEach(function(b){
-      b.addEventListener('pointermove',function(e){
-        var r=b.getBoundingClientRect();
-        b.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.14)+'px,'+((e.clientY-r.top-r.height/2)*0.24)+'px)';
-      });
-      b.addEventListener('pointerleave',function(){b.style.transform='';});
-    });
-  }
-  document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
-})();
-
-/* ── TILT CARDS (desktop) ── */
-(function(){
-  if(matchMedia('(hover:none)').matches) return;
-  function init(){
-    document.querySelectorAll('.card').forEach(function(c){
-      c.addEventListener('pointermove',function(e){
-        var r=c.getBoundingClientRect();
-        var px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
-        var x=px-0.5, y=py-0.5;
-        c.style.setProperty('--mx',(px*100).toFixed(1)+'%');
-        c.style.setProperty('--my',(py*100).toFixed(1)+'%');
-        c.style.transform='perspective(600px) rotateX('+(-y*5).toFixed(2)+'deg) rotateY('+(x*5).toFixed(2)+'deg) translateY(-2px)';
-      });
-      c.addEventListener('pointerleave',function(){
-        c.style.transform='';
-        c.style.setProperty('--mx','50%'); c.style.setProperty('--my','50%');
-      });
-    });
-  }
-  document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
-})();
-
-/* ── PROCEDURAL SPHERE — golden-spiral point distribution, generated
-   at runtime (no fixed shape/logo data). Reacts to pointer position,
-   idles on its own, auto-degrades quality under load. ── */
+/* Point sphere: golden-spiral distribution generated at runtime.
+   Follows the pointer, idles on its own, and reduces detail under load. */
 (function(){
   var TAU = Math.PI*2;
   function buildSphere(canvas){
     var ctx = canvas.getContext('2d');
+    var small = innerWidth<760;
     var density = +canvas.dataset.density||480;
+    if(small) density = Math.min(density, 340);
     var speed = +canvas.dataset.speed||1;
-    var W,H,R,cx,cy,dpr=Math.min(devicePixelRatio||1,1.75);
-    var pts=[], rotY=0.15, rotX=0.32, targX=0.32, targY=null;
+    var W,H,R,cx,cy,dpr=Math.min(devicePixelRatio||1,small?1.5:1.75);
+    var pts=[], rotY=0.15, rotX=0.32, targX=0.32, targY=null, visible=true;
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){visible=e.isIntersecting;});},{threshold:0}).observe(canvas);
+    }
     function size(){
       var r=canvas.getBoundingClientRect();
       W=r.width;H=r.height;
@@ -137,6 +114,7 @@
     }
     function frame(t){
       requestAnimationFrame(frame);
+      if(!visible) return;
       var dt = t-last;
       if(dt<16) return;
       governQuality(dt);
