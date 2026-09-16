@@ -122,9 +122,6 @@ section{position:relative;padding:116px 0}
 @media(max-width:999px){.h-split{grid-template-columns:1fr}.h-gem{order:-1;max-width:240px;margin:0 auto 4px}}
 @media(max-width:640px){.hero{min-height:auto;padding-top:108px;padding-bottom:40px}.h-trust{gap:14px}.h-gem{max-width:200px}.h-title{margin-top:16px}}
 
-.risk-strip{background:rgba(201,168,76,.05);border-block:1px solid rgba(201,168,76,.16);padding:14px 0}
-.risk-strip p{font-size:12.5px;color:var(--t2);line-height:1.7;text-align:center;max-width:960px;margin:0 auto}
-.risk-strip b{color:#8a6a26;font-weight:700}
 
 /* CRYSTAL CARDS */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);position:relative;overflow:hidden;transition:border-color .18s ease,box-shadow .18s ease;box-shadow:0 1px 2px rgba(6,20,41,.04)}
@@ -340,8 +337,16 @@ section{position:relative;padding:116px 0}
 .cf-grp input:focus,.cf-grp textarea:focus,.cf-grp select:focus{border-color:var(--bluLine)}
 .cf-grp textarea{min-height:90px}
 .cf-grp select option{background:#0B1F3A;color:#fff}
-.cf-submit{width:100%;padding:14px;background:var(--blu);color:#fff;border:none;border-radius:var(--r);font-family:var(--disp);font-size:14px;font-weight:700;cursor:pointer;transition:var(--fast)}
-.cf-submit:hover{background:var(--blu2)}
+.c-note{font-size:12.5px;color:var(--t3);line-height:1.7;margin-top:16px;max-width:400px}
+.cf-intro{font-size:13px;color:var(--t2);line-height:1.7;margin:-10px 0 20px}
+.cf-preview{margin-top:4px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg1);overflow:hidden}
+.cf-preview-h{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);padding:10px 14px;border-bottom:1px solid var(--line)}
+.cf-preview pre{margin:0;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--t2);white-space:pre-wrap;word-break:break-word;max-height:190px;overflow:auto}
+.cf-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.cf-actions .btn{flex:1 1 auto}
+.cf-actions .btn-ghost{flex:0 0 auto}
+.cf-status{font-size:12.5px;color:#4cc98f;margin-top:12px;min-height:18px}
+.cf-status.warn{color:var(--amber)}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:32px}}
 
 /* CTA BANNER */
