@@ -136,9 +136,6 @@ section{position:relative;padding:116px 0}
 @media(max-width:999px){.h-split{grid-template-columns:1fr}.h-gem{order:-1;max-width:240px;margin:0 auto 4px}}
 @media(max-width:640px){.hero{min-height:auto;padding-top:108px;padding-bottom:40px}.h-trust{gap:14px}.h-gem{max-width:200px}.h-title{margin-top:16px}}
 
-.risk-strip{background:rgba(201,168,76,.05);border-block:1px solid rgba(201,168,76,.16);padding:14px 0}
-.risk-strip p{font-size:12.5px;color:var(--t2);line-height:1.7;text-align:center;max-width:960px;margin:0 auto}
-.risk-strip b{color:#8a6a26;font-weight:700}
 
 /* CRYSTAL CARDS */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);position:relative;overflow:hidden;transition:border-color .18s ease,box-shadow .18s ease;box-shadow:0 1px 2px rgba(6,20,41,.04)}
@@ -354,8 +351,16 @@ section{position:relative;padding:116px 0}
 .cf-grp input:focus,.cf-grp textarea:focus,.cf-grp select:focus{border-color:var(--bluLine)}
 .cf-grp textarea{min-height:90px}
 .cf-grp select option{background:#0B1F3A;color:#fff}
-.cf-submit{width:100%;padding:14px;background:var(--blu);color:#fff;border:none;border-radius:var(--r);font-family:var(--disp);font-size:14px;font-weight:700;cursor:pointer;transition:var(--fast)}
-.cf-submit:hover{background:var(--blu2)}
+.c-note{font-size:12.5px;color:var(--t3);line-height:1.7;margin-top:16px;max-width:400px}
+.cf-intro{font-size:13px;color:var(--t2);line-height:1.7;margin:-10px 0 20px}
+.cf-preview{margin-top:4px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg1);overflow:hidden}
+.cf-preview-h{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);padding:10px 14px;border-bottom:1px solid var(--line)}
+.cf-preview pre{margin:0;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--t2);white-space:pre-wrap;word-break:break-word;max-height:190px;overflow:auto}
+.cf-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.cf-actions .btn{flex:1 1 auto}
+.cf-actions .btn-ghost{flex:0 0 auto}
+.cf-status{font-size:12.5px;color:#4cc98f;margin-top:12px;min-height:18px}
+.cf-status.warn{color:var(--amber)}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:32px}}
 
 /* CTA BANNER */
@@ -990,6 +995,85 @@ function toggleFaq(btn){
   });
   if(!open){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
 }
+
+/* Contact composer: builds the enquiry text and hands it to Telegram,
+   the visitor's email client, or the clipboard. Nothing is posted from
+   this page, so the visitor always sees exactly what gets sent. */
+(function(){
+  var TG='https://t.me/cateb007';
+  var MAIL='PrimusByVaneguardSupport@gmail.com';
+  function init(){
+    var name=document.getElementById('cfName');
+    if(!name) return;
+    var interest=document.getElementById('cfInterest'),
+        budget=document.getElementById('cfBudget'),
+        msg=document.getElementById('cfMsg'),
+        out=document.getElementById('cfPreview'),
+        status=document.getElementById('cfStatus');
+
+    function build(){
+      var who=(name.value||'').trim();
+      var lines=[];
+      lines.push('Hello Primus, '+(who?'my name is '+who+'.':'I would like to get in touch.'));
+      lines.push('');
+      lines.push('Interested in: '+interest.value);
+      if(budget.value!=='Not decided yet') lines.push('Starting account size: '+budget.value);
+      var extra=(msg.value||'').trim();
+      if(extra){ lines.push(''); lines.push(extra); }
+      return lines.join('\n');
+    }
+    function paint(){
+      var t=build();
+      out.textContent = (name.value||msg.value||interest.selectedIndex>0||budget.selectedIndex>0)
+        ? t : 'Fill in the fields above to build your message.';
+    }
+    [name,interest,budget,msg].forEach(function(el){
+      el.addEventListener('input',paint); el.addEventListener('change',paint);
+    });
+    paint();
+
+    function say(text,warn){
+      status.textContent=text;
+      status.className='cf-status'+(warn?' warn':'');
+    }
+    function ready(){
+      if(!(name.value||'').trim()){
+        say('Add your name first so we know who we are replying to.',true);
+        name.focus();
+        return false;
+      }
+      return true;
+    }
+    document.getElementById('cfTelegram').addEventListener('click',function(){
+      if(!ready()) return;
+      window.open(TG+'?text='+encodeURIComponent(build()),'_blank','noopener');
+      say('Telegram opened with your message ready to send.');
+    });
+    document.getElementById('cfEmail').addEventListener('click',function(){
+      if(!ready()) return;
+      var subject='Enquiry: '+interest.value;
+      window.location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(build());
+      say('Your email app should open with the message ready to send.');
+    });
+    document.getElementById('cfCopy').addEventListener('click',function(){
+      if(!ready()) return;
+      var text=build();
+      function done(){ say('Message copied. Paste it wherever you prefer.'); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){ say('Could not copy automatically. Select the preview text instead.',true); });
+      } else {
+        var ta=document.createElement('textarea');
+        ta.value=text; ta.setAttribute('readonly','');
+        ta.style.position='fixed'; ta.style.left='-9999px';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }
+        catch(e){ say('Could not copy automatically. Select the preview text instead.',true); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
+})();
 
 document.addEventListener('DOMContentLoaded',function(){
 
