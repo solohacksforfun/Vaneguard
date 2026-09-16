@@ -74,6 +74,85 @@ function toggleFaq(btn){
   if(!open){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
 }
 
+/* Contact composer: builds the enquiry text and hands it to Telegram,
+   the visitor's email client, or the clipboard. Nothing is posted from
+   this page, so the visitor always sees exactly what gets sent. */
+(function(){
+  var TG='https://t.me/cateb007';
+  var MAIL='PrimusByVaneguardSupport@gmail.com';
+  function init(){
+    var name=document.getElementById('cfName');
+    if(!name) return;
+    var interest=document.getElementById('cfInterest'),
+        budget=document.getElementById('cfBudget'),
+        msg=document.getElementById('cfMsg'),
+        out=document.getElementById('cfPreview'),
+        status=document.getElementById('cfStatus');
+
+    function build(){
+      var who=(name.value||'').trim();
+      var lines=[];
+      lines.push('Hello Primus, '+(who?'my name is '+who+'.':'I would like to get in touch.'));
+      lines.push('');
+      lines.push('Interested in: '+interest.value);
+      if(budget.value!=='Not decided yet') lines.push('Starting account size: '+budget.value);
+      var extra=(msg.value||'').trim();
+      if(extra){ lines.push(''); lines.push(extra); }
+      return lines.join('\n');
+    }
+    function paint(){
+      var t=build();
+      out.textContent = (name.value||msg.value||interest.selectedIndex>0||budget.selectedIndex>0)
+        ? t : 'Fill in the fields above to build your message.';
+    }
+    [name,interest,budget,msg].forEach(function(el){
+      el.addEventListener('input',paint); el.addEventListener('change',paint);
+    });
+    paint();
+
+    function say(text,warn){
+      status.textContent=text;
+      status.className='cf-status'+(warn?' warn':'');
+    }
+    function ready(){
+      if(!(name.value||'').trim()){
+        say('Add your name first so we know who we are replying to.',true);
+        name.focus();
+        return false;
+      }
+      return true;
+    }
+    document.getElementById('cfTelegram').addEventListener('click',function(){
+      if(!ready()) return;
+      window.open(TG+'?text='+encodeURIComponent(build()),'_blank','noopener');
+      say('Telegram opened with your message ready to send.');
+    });
+    document.getElementById('cfEmail').addEventListener('click',function(){
+      if(!ready()) return;
+      var subject='Enquiry: '+interest.value;
+      window.location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(build());
+      say('Your email app should open with the message ready to send.');
+    });
+    document.getElementById('cfCopy').addEventListener('click',function(){
+      if(!ready()) return;
+      var text=build();
+      function done(){ say('Message copied. Paste it wherever you prefer.'); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){ say('Could not copy automatically. Select the preview text instead.',true); });
+      } else {
+        var ta=document.createElement('textarea');
+        ta.value=text; ta.setAttribute('readonly','');
+        ta.style.position='fixed'; ta.style.left='-9999px';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }
+        catch(e){ say('Could not copy automatically. Select the preview text instead.',true); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
+})();
+
 document.addEventListener('DOMContentLoaded',function(){
 
   /* packages page: #mt5 / #tv / #ind in the URL selects that tab */
