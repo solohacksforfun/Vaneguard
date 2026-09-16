@@ -136,9 +136,6 @@ section{position:relative;padding:116px 0}
 @media(max-width:999px){.h-split{grid-template-columns:1fr}.h-gem{order:-1;max-width:240px;margin:0 auto 4px}}
 @media(max-width:640px){.hero{min-height:auto;padding-top:108px;padding-bottom:40px}.h-trust{gap:14px}.h-gem{max-width:200px}.h-title{margin-top:16px}}
 
-.risk-strip{background:rgba(201,168,76,.05);border-block:1px solid rgba(201,168,76,.16);padding:14px 0}
-.risk-strip p{font-size:12.5px;color:var(--t2);line-height:1.7;text-align:center;max-width:960px;margin:0 auto}
-.risk-strip b{color:#8a6a26;font-weight:700}
 
 /* CRYSTAL CARDS */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);position:relative;overflow:hidden;transition:border-color .18s ease,box-shadow .18s ease;box-shadow:0 1px 2px rgba(6,20,41,.04)}
@@ -354,8 +351,16 @@ section{position:relative;padding:116px 0}
 .cf-grp input:focus,.cf-grp textarea:focus,.cf-grp select:focus{border-color:var(--bluLine)}
 .cf-grp textarea{min-height:90px}
 .cf-grp select option{background:#0B1F3A;color:#fff}
-.cf-submit{width:100%;padding:14px;background:var(--blu);color:#fff;border:none;border-radius:var(--r);font-family:var(--disp);font-size:14px;font-weight:700;cursor:pointer;transition:var(--fast)}
-.cf-submit:hover{background:var(--blu2)}
+.c-note{font-size:12.5px;color:var(--t3);line-height:1.7;margin-top:16px;max-width:400px}
+.cf-intro{font-size:13px;color:var(--t2);line-height:1.7;margin:-10px 0 20px}
+.cf-preview{margin-top:4px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg1);overflow:hidden}
+.cf-preview-h{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--t3);padding:10px 14px;border-bottom:1px solid var(--line)}
+.cf-preview pre{margin:0;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--t2);white-space:pre-wrap;word-break:break-word;max-height:190px;overflow:auto}
+.cf-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.cf-actions .btn{flex:1 1 auto}
+.cf-actions .btn-ghost{flex:0 0 auto}
+.cf-status{font-size:12.5px;color:#4cc98f;margin-top:12px;min-height:18px}
+.cf-status.warn{color:var(--amber)}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:32px}}
 
 /* CTA BANNER */
@@ -603,9 +608,6 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   </div>
 </header>
 
-<div class="risk-strip">
-  <div class="wrap"><p><b>Risk notice:</b> Trading in financial markets involves substantial risk of loss and is not suitable for all investors. Automated trading systems do not guarantee profits. Past performance is not indicative of future results. Vaneguard / Primus does not provide regulated financial advice.</p></div>
-</div>
 
 <main id="main">
 
@@ -741,9 +743,9 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   </div>
 </section>
 
-<section id="contact" class="zone-dark" style="background:radial-gradient(ellipse 65% 50% at 10% 6%,rgba(65,105,225,.12),transparent 62%),#0B1F3A">
+<section id="contact" class="zone-dark" aria-labelledby="contact-h" style="background:radial-gradient(ellipse 65% 50% at 10% 6%,rgba(65,105,225,.12),transparent 62%),#0B1F3A">
   <div class="wrap">
-    <div class="center rv"><span class="kicker">Get In Touch</span><h2 class="sec-title">Let's Talk.</h2><p class="sec-sub">Ready to purchase or just want answers? We respond to every serious inquiry personally.</p></div>
+    <div class="center rv"><span class="kicker">Get In Touch</span><h2 class="sec-title" id="contact-h">Let's Talk.</h2><p class="sec-sub">Ready to purchase or just want answers? We respond to every serious inquiry personally.</p></div>
     <div class="contact-grid">
       <div class="rv-l">
         <p class="lede" style="max-width:420px">Whether you're ready to buy or still exploring, reach out. No pressure, just real answers from people who use the same systems we sell.</p>
@@ -751,14 +753,56 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
           <a href="https://t.me/cateb007" target="_blank" rel="noopener" class="c-link"><span class="c-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.697l-2.95-.924c-.64-.203-.655-.64.136-.948l11.57-4.46c.532-.194.998.13.826.883z"/></svg></span><div class="c-link-body"><span class="c-link-label">Telegram Support</span><span class="c-link-val">Chat with us instantly</span><span class="c-badge">Verified Telegram</span></div></a>
           <a href="mailto:PrimusByVaneguardSupport@gmail.com" class="c-link"><span class="c-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span><div class="c-link-body"><span class="c-link-label">Email Support</span><span class="c-link-val">PrimusByVaneguardSupport@gmail.com</span><span class="c-badge">Verified Email</span></div></a>
         </div>
+        <p class="c-note">Messages sent through Telegram are usually answered the same day. Email replies can take up to one business day.</p>
       </div>
+
       <div class="contact-form rv-r">
-        <h3>Send a Message</h3>
-        <div class="cf-grp"><label>Your Name</label><input type="text" placeholder="John Doe"></div>
-        <div class="cf-grp"><label>Email or Telegram</label><input type="text" placeholder="@username or email"></div>
-        <div class="cf-grp"><label>Interested In</label><select><option>General Inquiry</option><option>MT5/MT4 Bots</option><option>TradingView Bots</option><option>Indicators</option><option>Elite Bot ($10K+)</option><option>Setup &amp; Lifetime Support</option><option>Integrated VPN</option><option>Full Performance Report</option></select></div>
-        <div class="cf-grp"><label>Message</label><textarea placeholder="Tell us about your trading goals..."></textarea></div>
-        <button class="cf-submit" type="button">Send Message &#8594;</button>
+        <h3 id="composer-h">Start a Conversation</h3>
+        <p class="cf-intro">Fill this in and we will open Telegram or your email app with the message ready to send. Nothing is submitted from this page, so you always see exactly what goes out.</p>
+
+        <div class="cf-grp">
+          <label for="cfName">Your name</label>
+          <input type="text" id="cfName" name="name" placeholder="John Doe" autocomplete="name">
+        </div>
+        <div class="cf-grp">
+          <label for="cfInterest">What are you interested in?</label>
+          <select id="cfInterest" name="interest">
+            <option>General enquiry</option>
+            <option>MT5 / MT4 bots</option>
+            <option>TradingView bots</option>
+            <option>Indicators</option>
+            <option>Elite tier ($10,000+)</option>
+            <option>Setup &amp; lifetime support</option>
+            <option>Integrated VPN</option>
+            <option>Full performance report</option>
+          </select>
+        </div>
+        <div class="cf-grp">
+          <label for="cfBudget">Account size you plan to start with</label>
+          <select id="cfBudget" name="budget">
+            <option>Not decided yet</option>
+            <option>$300 to $500</option>
+            <option>$1,000</option>
+            <option>$2,000 to $5,000</option>
+            <option>$10,000+</option>
+          </select>
+        </div>
+        <div class="cf-grp">
+          <label for="cfMsg">Anything else we should know?</label>
+          <textarea id="cfMsg" name="message" placeholder="Your experience level, timezone, broker, or any questions."></textarea>
+        </div>
+
+        <div class="cf-preview" aria-live="polite">
+          <div class="cf-preview-h">Message preview</div>
+          <pre id="cfPreview">Fill in the fields above to build your message.</pre>
+        </div>
+
+        <div class="cf-actions">
+          <button type="button" class="btn btn-g" id="cfTelegram">Open in Telegram</button>
+          <button type="button" class="btn btn-o" id="cfEmail">Open in email</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="cfCopy">Copy message</button>
+        </div>
+        <p class="cf-status" id="cfStatus" role="status"></p>
       </div>
     </div>
   </div>
@@ -1048,6 +1092,85 @@ function toggleFaq(btn){
   });
   if(!open){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
 }
+
+/* Contact composer: builds the enquiry text and hands it to Telegram,
+   the visitor's email client, or the clipboard. Nothing is posted from
+   this page, so the visitor always sees exactly what gets sent. */
+(function(){
+  var TG='https://t.me/cateb007';
+  var MAIL='PrimusByVaneguardSupport@gmail.com';
+  function init(){
+    var name=document.getElementById('cfName');
+    if(!name) return;
+    var interest=document.getElementById('cfInterest'),
+        budget=document.getElementById('cfBudget'),
+        msg=document.getElementById('cfMsg'),
+        out=document.getElementById('cfPreview'),
+        status=document.getElementById('cfStatus');
+
+    function build(){
+      var who=(name.value||'').trim();
+      var lines=[];
+      lines.push('Hello Primus, '+(who?'my name is '+who+'.':'I would like to get in touch.'));
+      lines.push('');
+      lines.push('Interested in: '+interest.value);
+      if(budget.value!=='Not decided yet') lines.push('Starting account size: '+budget.value);
+      var extra=(msg.value||'').trim();
+      if(extra){ lines.push(''); lines.push(extra); }
+      return lines.join('\n');
+    }
+    function paint(){
+      var t=build();
+      out.textContent = (name.value||msg.value||interest.selectedIndex>0||budget.selectedIndex>0)
+        ? t : 'Fill in the fields above to build your message.';
+    }
+    [name,interest,budget,msg].forEach(function(el){
+      el.addEventListener('input',paint); el.addEventListener('change',paint);
+    });
+    paint();
+
+    function say(text,warn){
+      status.textContent=text;
+      status.className='cf-status'+(warn?' warn':'');
+    }
+    function ready(){
+      if(!(name.value||'').trim()){
+        say('Add your name first so we know who we are replying to.',true);
+        name.focus();
+        return false;
+      }
+      return true;
+    }
+    document.getElementById('cfTelegram').addEventListener('click',function(){
+      if(!ready()) return;
+      window.open(TG+'?text='+encodeURIComponent(build()),'_blank','noopener');
+      say('Telegram opened with your message ready to send.');
+    });
+    document.getElementById('cfEmail').addEventListener('click',function(){
+      if(!ready()) return;
+      var subject='Enquiry: '+interest.value;
+      window.location.href='mailto:'+MAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(build());
+      say('Your email app should open with the message ready to send.');
+    });
+    document.getElementById('cfCopy').addEventListener('click',function(){
+      if(!ready()) return;
+      var text=build();
+      function done(){ say('Message copied. Paste it wherever you prefer.'); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){ say('Could not copy automatically. Select the preview text instead.',true); });
+      } else {
+        var ta=document.createElement('textarea');
+        ta.value=text; ta.setAttribute('readonly','');
+        ta.style.position='fixed'; ta.style.left='-9999px';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); done(); }
+        catch(e){ say('Could not copy automatically. Select the preview text instead.',true); }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+  document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
+})();
 
 document.addEventListener('DOMContentLoaded',function(){
 
