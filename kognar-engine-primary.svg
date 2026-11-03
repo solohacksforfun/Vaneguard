@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 240" role="img" aria-labelledby="title desc">
+  <title id="title">Kognar Engine</title>
+  <desc id="desc">Kognar Engine primary logo with a technical angular symbol and wordmark.</desc>
+  <!-- Deep navy, electric blue, and ice silver palette. -->
+  <g id="kognar-symbol" transform="translate(24 24)">
+    <!-- Three precise forward-sweeping rails: data, judgement and execution. -->
+    <path fill="#06142C" d="M13 36 53 13h72l-30 31H59L37 57v78l22 13h36l30 31H53l-40-23z"/>
+    <path fill="#005BEA" d="M53 13h72l-30 31H59L37 57V36z"/>
+    <path fill="#9FAFC4" d="m95 44 30-31v34L95 78H59l-22 13V57l22-13z"/>
+    <path fill="#005BEA" d="m125 47 40 23v52l-40 23V111l10-6V87l-10-6z"/>
+    <path fill="#06142C" d="m95 78 30-31v34l10 6v18l-10 6V145l-30 31H59l30-31h36l10-6V87l-10-9z"/>
+    <path fill="#9FAFC4" d="m125 145 40-23v34l-40 23z"/>
+    <path fill="#005BEA" d="m13 158 40 21h72l-30-31H59l-22-12v-21l-24-14z"/>
+  </g>
+  <g fill="#06142C" font-family="Arial, Helvetica, sans-serif" letter-spacing="0">
+    <text x="238" y="130" font-size="74" font-weight="700">Kognar</text>
+    <text x="238" y="183" font-size="36" font-weight="600" letter-spacing="9">ENGINE</text>
+  </g>
+  <rect x="238" y="151" width="442" height="4" rx="2" fill="#005BEA"/>
+</svg>
