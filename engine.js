@@ -1,4 +1,4 @@
-/* Primus by Vaneguard
+/* Kognar Engine by Corvanta
    Interaction: navigation, reading progress, mobile menu,
    scroll reveals, and the point-sphere canvas. */
 
