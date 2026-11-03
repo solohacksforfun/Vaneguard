@@ -1,4 +1,4 @@
-/* Primus by Vaneguard
+/* Kognar Engine by Corvanta
    Page logic: package tabs, order summary, FAQ, performance charts. */
 function switchTab(tab,btn){
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');p.hidden=true;});
@@ -79,7 +79,9 @@ function toggleFaq(btn){
    this page, so the visitor always sees exactly what gets sent. */
 (function(){
   var TG='https://t.me/cateb007';
-  var MAIL='PrimusByVaneguardSupport@gmail.com';
+  /* Live support inbox. Also appears as mailto: links in the contact block and
+     the footer; change all of them together. */
+  var MAIL='corvantasupportteam@gmail.com';
   function init(){
     var name=document.getElementById('cfName');
     if(!name) return;
@@ -92,7 +94,7 @@ function toggleFaq(btn){
     function build(){
       var who=(name.value||'').trim();
       var lines=[];
-      lines.push('Hello Primus, '+(who?'my name is '+who+'.':'I would like to get in touch.'));
+      lines.push('Hello Corvanta, '+(who?'my name is '+who+'.':'I would like to get in touch.'));
       lines.push('');
       lines.push('Interested in: '+interest.value);
       if(budget.value!=='Not decided yet') lines.push('Starting account size: '+budget.value);
@@ -165,13 +167,13 @@ document.addEventListener('DOMContentLoaded',function(){
   tabFromHash();
   addEventListener('hashchange',tabFromHash);
 
-  /* seeded 156-week performance sequence */
+  /* seeded 185-week performance sequence */
   var seq=[],wc=0,ac=0,mc=0;
-  var missAt=[12,28,45,67,89,130];
-  var aboveAt=[7,22,37,52,68,83,98,112,120,135,148];
-  for(var i=0;i<156;i++){
-    if(missAt.includes(i)&&mc<6){seq.push('m');mc++;}
-    else if(aboveAt.includes(i)&&ac<11){seq.push('a');ac++;}
+  var missAt=[8,19,31,42,54,66,77,89,100,112,124,135,147,158,170,181];
+  var aboveAt=[6,20,34,48,62,76,90,104,118,132,146,160,174];
+  for(var i=0;i<185;i++){
+    if(missAt.includes(i)&&mc<16){seq.push('m');mc++;}
+    else if(aboveAt.includes(i)&&ac<13){seq.push('a');ac++;}
     else{seq.push('w');wc++;}
   }
   function spread(i,lo,hi){var x=Math.sin(i*12.9898)*43758.5453;x=x-Math.floor(x);return lo+x*(hi-lo);}
@@ -180,7 +182,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var perfEl=document.getElementById('perfChart');
   if(perfEl){
     perfEl.setAttribute('role','img');
-    perfEl.setAttribute('aria-label','156 weeks of results: 139 weeks hit target, 11 weeks above target, 6 weeks below target.');
+    perfEl.setAttribute('aria-label','185 weeks of results: 156 weeks hit target, 13 weeks above target, 16 weeks below target.');
     seq.forEach(function(t,i){
       var b=document.createElement('div');
       b.className='pc-bar '+t;
@@ -200,7 +202,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   var circ=2*Math.PI*48;
   function animateDonut(){
-    var total=156,hit=139,above=11,miss=6;
+    var total=185,hit=156,above=13,miss=16;
     var aboveArc=circ*(above/total),hitArc=circ*(hit/total),missArc=circ*(miss/total);
     var ae=document.getElementById('donut-above'),he=document.getElementById('donut-hit'),me=document.getElementById('donut-miss');
     if(ae){ae.style.strokeDasharray=aboveArc+' '+circ;ae.style.strokeDashoffset='0';}
