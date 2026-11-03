@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-labelledby="title desc">
+  <title id="title">Kognar Engine icon</title>
+  <desc id="desc">A compact, angular, forward-sweeping Kognar Engine symbol.</desc>
+  <!-- Clear at favicon scale: a deliberate K-shaped data path, not a monogram borrowed from the prior brand. -->
+  <path fill="#06142C" d="M14 39 56 15h73l-31 32H63L39 61v72l24 13h35l31 32H56l-42-24z"/>
+  <path fill="#005BEA" d="M56 15h73L98 47H63L39 61V39z"/>
+  <path fill="#9FAFC4" d="m98 47 31-32v35L98 82H63L39 96V61l24-14z"/>
+  <path fill="#005BEA" d="m129 50 42 24v44l-42 24v-35l12-7V91l-12-7z"/>
+  <path fill="#06142C" d="m98 82 31-32v34l12 7v9l-12 7v35l-31 32H63l31-32h35l12-7V91l-12-9z"/>
+  <path fill="#9FAFC4" d="m129 142 42-24v35l-42 25z"/>
+  <path fill="#005BEA" d="m14 153 42 25h73l-31-32H63l-24-13v-19l-25-14z"/>
+</svg>
