@@ -3,16 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>Performance | Primus by Vaneguard</title>
-<meta name="description" content="156 weeks of live, week-by-week performance data since 2023. Win-rate distribution, pair-by-pair results, streaks and risk metrics.">
+<title>Kognar Engine Performance: 185 Weeks of Live Results | Corvanta</title>
+<meta name="description" content="185 weeks of live Kognar Engine performance data since 2023: win-rate distribution, pair-by-pair results, streaks and risk metrics from Corvanta.">
+<link rel="canonical" href="https://vaneguardgroup.com/performance.html">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="theme-color" content="#E8ECF2">
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
+<meta name="author" content="Corvanta">
+<meta name="application-name" content="Kognar Engine">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="kognar-engine-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kognar Engine by Corvanta">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Kognar Engine Performance">
+<meta property="og:description" content="185 weeks of live Kognar Engine performance data since 2023: win-rate distribution, pair-by-pair results, streaks and risk metrics from Corvanta.">
+<meta property="og:url" content="https://vaneguardgroup.com/performance.html">
+<meta property="og:image" content="https://vaneguardgroup.com/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Kognar Engine logo above the Corvanta wordmark">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kognar Engine Performance">
+<meta name="twitter:description" content="185 weeks of live Kognar Engine performance data since 2023: win-rate distribution, pair-by-pair results, streaks and risk metrics from Corvanta.">
+<meta name="twitter:image" content="https://vaneguardgroup.com/og-image.png">
+<meta name="twitter:image:alt" content="The Kognar Engine logo above the Corvanta wordmark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vaneguardgroup.com/#corvanta",
+      "name": "Corvanta",
+      "url": "https://vaneguardgroup.com/",
+      "description": "Corvanta is the software company that builds and operates Kognar Engine, its flagship AI trading engine.",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://vaneguardgroup.com/android-chrome-512x512.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://vaneguardgroup.com/og-image.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://t.me/cateb007",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vaneguardgroup.com/#website",
+      "url": "https://vaneguardgroup.com/",
+      "name": "Kognar Engine by Corvanta",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://vaneguardgroup.com/#corvanta" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://vaneguardgroup.com/#kognar-engine",
+      "name": "Kognar Engine",
+      "alternateName": "Kognar Engine by Corvanta",
+      "applicationCategory": "FinanceApplication",
+      "applicationSubCategory": "Automated trading software",
+      "operatingSystem": "MetaTrader 5, MetaTrader 4, TradingView",
+      "url": "https://vaneguardgroup.com/packages.html",
+      "image": "https://vaneguardgroup.com/og-image.png",
+      "description": "Kognar Engine is an AI-powered automated trading system built by Corvanta. It runs backtested strategies on MetaTrader 5, MetaTrader 4 and TradingView, placing, managing and closing trades by rule across forex, crypto and futures, with risk-per-trade limits, automatic stop-losses and breakeven triggers enforced on every position.",
+      "publisher": { "@id": "https://vaneguardgroup.com/#corvanta" },
+      "author": { "@id": "https://vaneguardgroup.com/#corvanta" },
+      "isPartOf": { "@id": "https://vaneguardgroup.com/#website" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://vaneguardgroup.com/performance.html#webpage",
+      "url": "https://vaneguardgroup.com/performance.html",
+      "name": "Kognar Engine Performance",
+      "description": "185 weeks of live Kognar Engine performance data since 2023: win-rate distribution, pair-by-pair results, streaks and risk metrics from Corvanta.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://vaneguardgroup.com/#website" },
+      "about": { "@id": "https://vaneguardgroup.com/#kognar-engine" },
+      "primaryImageOfPage": "https://vaneguardgroup.com/og-image.png"
+    }
+  ]
+}
+</script>
 <style>
-/* Primus by Vaneguard
+/* Kognar Engine by Corvanta
    Design system: tokens, layout, components.
    .zone-dark re-declares the same tokens with inverted values so
    dark sections (footer, contact) restyle without duplicate rules. */
@@ -35,7 +120,7 @@ button{font-family:inherit}
   --e:cubic-bezier(.32,.72,0,1);--fast:.25s var(--e);--slow:.6s var(--e);
   --r:8px;--r2:12px;--r3:16px;
 }
-/* dark-zone override: footer, .primus panel, contact section.
+/* dark-zone override: footer, .kognar panel, contact section.
    Same token names, inverted values -> every component below
    (cards, kickers, buttons, text) adapts automatically. */
 .zone-dark{
@@ -136,7 +221,6 @@ section{position:relative;padding:116px 0}
 @media(max-width:999px){.h-split{grid-template-columns:1fr}.h-gem{order:-1;max-width:240px;margin:0 auto 4px}}
 @media(max-width:640px){.hero{min-height:auto;padding-top:108px;padding-bottom:40px}.h-trust{gap:14px}.h-gem{max-width:200px}.h-title{margin-top:16px}}
 
-
 /* CRYSTAL CARDS */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);position:relative;overflow:hidden;transition:border-color .18s ease,box-shadow .18s ease;box-shadow:0 1px 2px rgba(6,20,41,.04)}
 .zone-dark .card{box-shadow:none}
@@ -149,12 +233,9 @@ section{position:relative;padding:116px 0}
 /* FIND-IT CARDS (why-section) */
 .findit{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .fi-card{padding:32px 26px;display:flex;flex-direction:column;align-items:flex-start}
-.fi-badge{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blu);background:var(--bluGlow);border:1px solid rgba(20,50,160,.2);padding:4px 10px;border-radius:6px;margin-bottom:18px}
 .fi-num{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--blu);line-height:1;margin-bottom:14px}
 .fi-title{font-family:var(--disp);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:8px}
 .fi-desc{font-size:13.5px;color:var(--t2);line-height:1.7;flex:1}
-.fi-go{margin-top:20px;font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--blu);display:flex;align-items:center;gap:7px;transition:gap var(--fast)}
-.fi-go svg{width:12px;height:12px;stroke:var(--blu);fill:none;stroke-width:2;stroke-linecap:round;transition:transform .3s var(--e)}
 
 @media(max-width:1200px){.findit{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.findit{grid-template-columns:1fr}}
@@ -168,17 +249,7 @@ section{position:relative;padding:116px 0}
 .step p{font-size:13.5px;color:var(--t2);line-height:1.75}
 @media(max-width:860px){.stepgrid{grid-template-columns:1fr}}
 
-/* PHILO / PRIMUS PANEL */
-.philo{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
-.philo-gem{display:flex;align-items:center;justify-content:center}
-.philo-gem canvas{width:100%;height:100%}
-@media(max-width:1024px){.philo{grid-template-columns:1fr;gap:38px}.philo-gem{max-width:280px;margin:0 auto}}
-.pf-list{display:flex;flex-direction:column;gap:14px}
-.pf-item{display:flex;gap:16px;align-items:flex-start;padding:20px;border:1px solid var(--line);border-radius:var(--r2);background:var(--panel);transition:border-color .18s ease}
-.pf-item:hover{border-color:var(--line2)}
-.pf-text h4{font-family:var(--disp);font-size:15px;font-weight:800;color:var(--t1);margin-bottom:4px}
-.pf-text p{font-size:13px;color:var(--t2);line-height:1.65}
-.pv-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);padding:28px}
+/* PANEL HEADER + MINI CHART */
 .pv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .pv-title{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.06em;text-transform:uppercase}
 .pv-chart{height:96px;display:flex;align-items:flex-end;gap:2px;margin-bottom:20px}
@@ -187,10 +258,6 @@ section{position:relative;padding:116px 0}
 .pv-bar.w{background:linear-gradient(to top,var(--blu),var(--cyan))}
 .pv-bar.a{background:linear-gradient(to top,var(--amber),#e3c583)}
 .pv-bar.m{background:var(--t4)}
-.pv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pvs{text-align:center}
-.pvs-val{font-family:var(--disp);font-size:1.3rem;font-weight:800;color:var(--t1)}
-.pvs-lbl{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin-top:3px}
 
 /* STAT ROW */
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;margin-top:44px}
@@ -235,7 +302,6 @@ section{position:relative;padding:116px 0}
 
 .perf-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
 .pd-card{padding:22px;text-align:center}
-.pd-icon{font-size:1.5rem;margin-bottom:8px}
 .pd-val{font-family:var(--disp);font-size:1.4rem;font-weight:800;color:var(--t1);margin-bottom:3px}
 .pd-val.green{color:#1f8a54}
 .pd-lbl{font-size:11px;color:var(--t2)}
@@ -287,11 +353,17 @@ section{position:relative;padding:116px 0}
 .addon-plus{width:18px;height:18px;flex-shrink:0;border-radius:4px;background:var(--blu);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
 .addon-lbl{font-size:12.5px;color:var(--t2);flex:1}
 .addon-price-tag{font-family:var(--mono);font-size:12px;color:var(--blu);font-weight:600}
+/* required component sits above the optional block and reads as part of the build */
+.addons-hdr.req-hdr{color:var(--blu)}
+.addons-req{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blu);background:var(--bluGlow);border:1px solid var(--bluLine);padding:2px 7px;border-radius:5px}
+.card-addon-row.row-req{border-color:var(--bluLine);background:var(--bluGlow)}
+.card-addon-row.row-req .addon-lbl{color:var(--t1);font-weight:600}
+.addon-plus.plus-req{background:var(--blu)}
+.addon-note{font-size:11.5px;line-height:1.6;color:var(--t3);margin:-2px 0 10px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .p-note{font-size:13.5px;color:var(--t2);margin-top:20px;padding:12px 16px;background:var(--bluGlow);border:1px solid var(--bluLine);border-radius:var(--r);max-width:560px}
 
 .ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:20px}
 .ind-card{padding:26px}
-.ind-icon{font-size:1.3rem;margin-bottom:10px}
 .ind-name{font-family:var(--disp);font-size:16px;font-weight:800;color:var(--t1);margin-bottom:3px}
 .ind-tagline{font-size:12.5px;color:var(--blu);font-weight:600;margin-bottom:10px}
 .ind-desc{font-size:13px;color:var(--t2);line-height:1.65;margin-bottom:16px}
@@ -385,6 +457,8 @@ footer{border-top:1px solid var(--line);padding:80px 0 36px;position:relative;ov
 .f-ls a{font-size:14px;color:var(--t2);transition:color .18s ease}
 .f-ls a:hover{color:#fff}
 .f-btm{border-top:1px solid var(--line);padding-top:30px;display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;position:relative;z-index:1}
+.f-brandline{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.f-wordmark{height:42px;width:auto;opacity:.85}
 .f-copy{font-size:12.5px;color:var(--t3)}
 .f-mini{font-size:12px;color:var(--t3);line-height:1.7;max-width:680px}
 @media(max-width:1024px){.f-grid{grid-template-columns:1fr 1fr}.f-brand{grid-column:1/-1}}
@@ -419,7 +493,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
 .what-points{display:grid;gap:12px;margin-top:26px}
 .what-pt{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r2);background:var(--panel)}
 .what-pt .ic{width:38px;height:38px;border-radius:10px}
-.what-pt h4{font-family:var(--disp);font-size:15px;font-weight:800;color:var(--t1);margin-bottom:3px}
+.what-pt h3{font-family:var(--disp);font-size:15px;font-weight:800;color:var(--t1);margin-bottom:3px}
 .what-pt p{font-size:13.5px;color:var(--t2);line-height:1.65}
 .what-visual{position:relative}
 .what-visual .card{padding:26px}
@@ -500,13 +574,14 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   .burger{display:flex}
   .btn-lg{padding:16px 30px;font-size:13.5px}
   .stat-row{grid-template-columns:1fr 1fr}
-  .primus-grid,.contact-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
   .f-ls a{display:inline-block;padding:8px 0}
 }
 @media(max-width:640px){
   .nav-in{height:64px;gap:10px}
   .nav-logo-img{width:36px;height:36px;flex:0 0 36px;border-radius:9px}
-  .nav-name{font-size:13.5px}
+  /* the lockup is a word longer than a single-word brand, so it steps down here */
+  .nav-name{font-size:12.5px}
   .nav-cta .btn-sm{padding:9px 15px;font-size:11.5px}
   .burger{width:38px;height:38px}
   #nav.stuck .nav-in{height:60px}
@@ -516,7 +591,15 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   #stop{bottom:18px;right:18px;width:42px;height:42px}
   .findit,.stepgrid,.stat-row,.pairs-grid,.perf-detail-grid,.ind-grid,.cards-row{grid-template-columns:1fr}
 }
+/* narrowest phones: stack the lockup onto two lines rather than clipping it */
+@media(max-width:400px){
+  .nav-name{white-space:normal;line-height:1.15}
+  .nav-name b{display:block}
+}
 
+/* drawdown shown alongside any published win-rate figure */
+.dd-note{font-size:12px;line-height:1.65;color:var(--t3);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.dd-note a{color:var(--blu);font-weight:600}
 </style>
 </head>
 <body>
@@ -526,15 +609,15 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   <div class="wrap">
     <div class="nav-in">
       <a class="nav-logo" href="index.html">
-        <img src="logo.png" class="nav-logo-img" alt="Primus by Vaneguard">
+        <img src="kognar-engine-icon.svg" class="nav-logo-img" width="44" height="44" decoding="async" alt="Kognar Engine logo">
         <div style="min-width:0">
-          <div class="nav-name">PRIMUS <b>BY VANEGUARD</b></div>
+          <div class="nav-name">KOGNAR ENGINE <b>BY CORVANTA</b></div>
           <div class="nav-motto">Trade Smarter</div>
         </div>
       </a>
       <ul class="nav-links" role="list">
         <li><a class="top" href="index.html">Home</a></li>
-        <li><a class="top" href="index.html#why">Why Primus</a></li>
+        <li><a class="top" href="index.html#why">Why Kognar</a></li>
         <li><a class="top" href="index.html#how">How It Works</a></li>
         <li>
           <a class="top" href="packages.html" aria-haspopup="true">Packages <span class="car" aria-hidden="true"></span></a>
@@ -559,14 +642,14 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
 <div id="mnav">
   <button class="mclose" aria-label="Close navigation menu">&#10005;</button>
   <a href="index.html">Home</a>
-  <a href="index.html#why">Why Primus</a>
+  <a href="index.html#why">Why Kognar</a>
   <a href="index.html#how">How It Works</a>
   <a href="packages.html">Packages</a>
   <a class="m-sub" href="packages.html#mt5">MT4 / MT5 Bots</a>
   <a class="m-sub" href="packages.html#tv">TradingView Bots</a>
   <a class="m-sub" href="packages.html#ind">Indicators</a>
   <a href="performance.html">Performance</a>
-  <a href="explore.html">Explore Primus</a>
+  <a href="explore.html">Explore Kognar Engine</a>
   <a href="index.html#faq">FAQ</a>
   <a href="index.html#contact">Contact</a>
   <a href="index.html#contact" style="color:var(--blu)">Contact us</a>
@@ -578,7 +661,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
     <div class="crumb"><a href="index.html">Home</a><span>/</span>Performance</div>
     <span class="kicker">Track Record</span>
     <h1 class="sec-title">Verified Consistency<br><span class="g">Data.</span></h1>
-    <p class="lede">156 weeks of live performance data since 2023. Not projections. Real week-by-week results from active accounts.</p>
+    <p class="lede">185 weeks of live performance data since 2023. Not projections. Real week-by-week results from active accounts.</p>
   </div>
 </header>
 <main id="main">
@@ -586,14 +669,14 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
 <section id="apex" style="padding-top:30px;background:var(--bg2);border-block:1px solid var(--line)">
   <div class="wrap">
     <div class="center rv">
-      <span class="kicker">Powered by Primus</span>
+      <span class="kicker">Powered by Kognar Engine</span>
       <h2 class="sec-title">Apex-Level Intelligence.<br><span class="g">Built for You.</span></h2>
-      <p class="sec-sub">Primus is Vaneguard's flagship system, engineered with the precision of institutional trading infrastructure, now accessible to ambitious individuals. This is what produces the numbers below.</p>
+      <p class="sec-sub">Kognar Engine is Corvanta's flagship system, engineered with the precision of institutional trading infrastructure, now accessible to ambitious individuals. This is what produces the numbers below.</p>
     </div>
     <div class="findit rv d1" style="margin-top:40px;grid-template-columns:repeat(2,1fr)">
   <div class="card fi-card"><div class="ic" style="margin-bottom:16px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div><div class="fi-title">Millisecond Execution</div><p class="fi-desc">Orders placed and managed the instant market conditions meet strategy criteria.</p></div>
   <div class="card fi-card"><div class="ic" style="margin-bottom:16px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18l-3 12H6L3 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div><div class="fi-title">Gold (XAUUSD) Integration</div><p class="fi-desc">Packages from $1,000 include a dedicated Gold bot, one of the highest-return instruments available.</p></div>
-  <div class="card fi-card"><div class="ic" style="margin-bottom:16px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="fi-title">Capital Protection Logic</div><p class="fi-desc">Automatic breakeven triggers and drawdown limits ensure no single losing run can damage your account.</p></div>
+  <div class="card fi-card"><div class="ic" style="margin-bottom:16px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="fi-title">Disciplined Risk Logic</div><p class="fi-desc">Automatic breakeven triggers and drawdown limits cap how far a losing run is allowed to go. They reduce exposure rather than remove risk.</p></div>
   <div class="card fi-card"><div class="ic" style="margin-bottom:16px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></div><div class="fi-title">Compounding Returns</div><p class="fi-desc">Weekly targets are structured to compound, so your returns grow as your account grows.</p></div>
 </div>
   </div>
@@ -606,19 +689,19 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
       <h2 class="sec-title">Week by Week.<br><span class="g">Three Years Running.</span></h2>
     </div>
     <div class="stat-row rv d1">
-      <div class="stat-cell"><div class="stat-v green">89%</div><div class="stat-l">Overall Win Rate</div></div>
-      <div class="stat-cell"><div class="stat-v">139</div><div class="stat-l">Weeks Hit Target</div></div>
-      <div class="stat-cell"><div class="stat-v blue">11</div><div class="stat-l">Weeks Above Target</div></div>
-      <div class="stat-cell"><div class="stat-v">6</div><div class="stat-l">Weeks Below Target</div></div>
+      <div class="stat-cell"><div class="stat-v green">84%</div><div class="stat-l">Overall Win Rate</div></div>
+      <div class="stat-cell"><div class="stat-v">156</div><div class="stat-l">Weeks Hit Target</div></div>
+      <div class="stat-cell"><div class="stat-v blue">13</div><div class="stat-l">Weeks Above Target</div></div>
+      <div class="stat-cell"><div class="stat-v">16</div><div class="stat-l">Weeks Below Target</div></div>
     </div>
     <div class="perf-grid rv d2">
       <div class="card perf-panel">
-        <div class="perf-panel-title">Week-by-Week Results: 156 Weeks (Live Since 2023)</div>
+        <div class="perf-panel-title">Week-by-Week Results: 185 Weeks (Live Since 2023)</div>
         <div class="bar-chart" id="perfChart"></div>
         <div class="perf-legend">
-          <span><span class="leg-dot" style="background:var(--blu)"></span>Hit Target (139 wks)</span>
-          <span><span class="leg-dot" style="background:var(--amber)"></span>Above Target (11 wks)</span>
-          <span><span class="leg-dot" style="background:var(--t4)"></span>Below Target (6 wks)</span>
+          <span><span class="leg-dot" style="background:var(--blu)"></span>Hit Target (156 wks)</span>
+          <span><span class="leg-dot" style="background:var(--amber)"></span>Above Target (13 wks)</span>
+          <span><span class="leg-dot" style="background:var(--t4)"></span>Below Target (16 wks)</span>
         </div>
       </div>
       <div class="card perf-panel">
@@ -629,13 +712,13 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
             <circle cx="60" cy="60" r="48" fill="none" stroke="var(--amber)" stroke-width="14" id="donut-above" stroke-dasharray="0 302" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
             <circle cx="60" cy="60" r="48" fill="none" stroke="var(--blu)" stroke-width="14" id="donut-hit" stroke-dasharray="0 302" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
             <circle cx="60" cy="60" r="48" fill="none" stroke="var(--t4)" stroke-width="14" id="donut-miss" stroke-dasharray="0 302" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
-            <text x="60" y="56" text-anchor="middle" font-family="Manrope,sans-serif" font-size="17" font-weight="800" fill="#061429">89%</text>
+            <text x="60" y="56" text-anchor="middle" font-family="Manrope,sans-serif" font-size="17" font-weight="800" fill="#061429">84%</text>
             <text x="60" y="69" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="500" fill="#54637E" letter-spacing=".8">WIN RATE</text>
           </svg>
           <div class="donut-legend">
-            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:var(--blu)"></span>Hit Weekly Target</div><div class="dl-val">139 wks</div></div>
-            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:var(--amber)"></span>Above Target</div><div class="dl-val">11 wks</div></div>
-            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:var(--t4)"></span>Below Target</div><div class="dl-val">6 wks</div></div>
+            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:var(--blu)"></span>Hit Weekly Target</div><div class="dl-val">156 wks</div></div>
+            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:var(--amber)"></span>Above Target</div><div class="dl-val">13 wks</div></div>
+            <div class="dl-row"><div class="dl-left"><span class="leg-dot" style="background:var(--t4)"></span>Below Target</div><div class="dl-val">16 wks</div></div>
           </div>
         </div>
       </div>
@@ -654,7 +737,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
             </script>
           </div>
         </div>
-        <div class="pair-rate">89.4%</div>
+        <div class="pair-rate">85%</div>
         <div class="pair-lbl">Win Rate</div>
       </div>
       <div class="card pair-card">
@@ -667,7 +750,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
             </script>
           </div>
         </div>
-        <div class="pair-rate">86.1%</div>
+        <div class="pair-rate">81.1%</div>
         <div class="pair-lbl">Win Rate</div>
       </div>
       <div class="card pair-card">
@@ -680,7 +763,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
             </script>
           </div>
         </div>
-        <div class="pair-rate">87.6%</div>
+        <div class="pair-rate">82%</div>
         <div class="pair-lbl">Win Rate</div>
       </div>
     </div>
@@ -689,7 +772,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
       <div class="card pd-card"><div class="ic" style="margin:0 auto 12px"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><div class="pd-val">Since 2023</div><div class="pd-lbl">Live Trading Start Date</div></div>
       <div class="card pd-card"><div class="ic" style="margin:0 auto 12px"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg></div><div class="pd-val">MT5 / MT4</div><div class="pd-lbl">Trading Platform</div></div>
     </div>
-    
+
 
     <div class="center rv d2" style="margin-top:3.5rem">
       <span class="kicker">Deeper Metrics</span>
@@ -731,21 +814,21 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
 </section>
 </main>
 <footer class="zone-dark" style="background:#04101F">
-  <div class="f-sphere" aria-hidden="true"><canvas class="pv-orb" data-density="380" data-speed=".4" aria-label="Primus rotating sphere"></canvas></div>
+  <div class="f-sphere" aria-hidden="true"><canvas class="pv-orb" data-density="380" data-speed=".4" aria-label="Kognar Engine rotating sphere"></canvas></div>
   <div class="wrap">
     <div class="f-grid">
       <div class="f-brand">
-        <div class="f-logo"><img src="logo.png" alt="Primus by Vaneguard"><span class="f-name">PRIMUS BY VANEGUARD</span></div>
+        <div class="f-logo"><img src="kognar-engine-icon.svg" width="34" height="34" loading="lazy" decoding="async" alt="Kognar Engine logo"><span class="f-name">KOGNAR ENGINE BY CORVANTA</span></div>
         <div class="f-motto">Trade Smarter</div>
         <p class="f-desc">Intelligent automated trading systems built for ambitious individuals serious about long-term wealth creation.</p>
         <div class="f-social">
           <a href="https://t.me/cateb007" target="_blank" rel="noopener" class="f-soc" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.697l-2.95-.924c-.64-.203-.655-.64.136-.948l11.57-4.46c.532-.194.998.13.826.883z"/></svg></a>
-          <a href="mailto:PrimusByVaneguardSupport@gmail.com" class="f-soc" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></a>
+          <a href="mailto:corvantasupportteam@gmail.com" class="f-soc" aria-label="Email support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></a>
         </div>
       </div>
       <div>
         <p class="f-h">Platform</p>
-        <ul class="f-ls"><li><a href="index.html#why">Why Primus</a></li><li><a href="index.html#how">How It Works</a></li><li><a href="explore.html">Explore Primus</a></li><li><a href="performance.html">Performance</a></li></ul>
+        <ul class="f-ls"><li><a href="index.html#why">Why Kognar</a></li><li><a href="index.html#how">How It Works</a></li><li><a href="explore.html">Explore Kognar Engine</a></li><li><a href="performance.html">Performance</a></li></ul>
       </div>
       <div>
         <p class="f-h">Products</p>
@@ -753,7 +836,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
       </div>
       <div>
         <p class="f-h">Support</p>
-        <ul class="f-ls"><li><a href="index.html#faq">FAQ</a></li><li><a href="index.html#contact">Contact Us</a></li><li><a href="https://t.me/cateb007" target="_blank">Telegram</a></li><li><a href="mailto:PrimusByVaneguardSupport@gmail.com">Email Support</a></li></ul>
+        <ul class="f-ls"><li><a href="index.html#faq">FAQ</a></li><li><a href="index.html#contact">Contact Us</a></li><li><a href="https://t.me/cateb007" target="_blank">Telegram</a></li><li><a href="mailto:corvantasupportteam@gmail.com">Email Support</a></li></ul>
       </div>
       <div>
         <p class="f-h">Legal</p>
@@ -761,15 +844,18 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
       </div>
     </div>
     <div class="f-btm">
-      <p class="f-copy">&copy; 2025 Vaneguard. All rights reserved. Primus is a flagship product of Vaneguard.</p>
-      <p class="f-mini">Risk Disclaimer: Trading in financial markets involves substantial risk of loss and is not suitable for all investors. Automated trading systems do not guarantee profits. Past performance is not indicative of future results. Weekly targets are based on historical data, and actual results may vary. "Below target" weeks indicate the bot did not reach its full weekly target but did not necessarily result in a net loss. Only invest capital you can afford to lose. Vaneguard / Primus does not provide regulated financial advice.</p>
+      <div class="f-brandline">
+        <img class="f-wordmark" src="corvanta-wordmark-dark.svg" width="760" height="180" loading="lazy" decoding="async" alt="Corvanta wordmark">
+        <p class="f-copy">&copy; 2025 Corvanta. All rights reserved. Kognar Engine is built and operated by Corvanta.</p>
+      </div>
+      <p class="f-mini">Risk Disclaimer: Trading in financial markets involves substantial risk of loss and is not suitable for all investors. Automated trading systems do not guarantee profits. Past performance is not indicative of future results. Weekly targets are based on historical data, and actual results may vary. "Below target" weeks indicate the bot did not reach its full weekly target but did not necessarily result in a net loss. Only invest capital you can afford to lose. Corvanta does not provide regulated financial advice.</p>
     </div>
   </div>
 </footer>
 
 <button id="stop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
 <script>
-/* Primus by Vaneguard
+/* Kognar Engine by Corvanta
    Interaction: navigation, reading progress, mobile menu,
    scroll reveals, and the point-sphere canvas. */
 
@@ -923,10 +1009,9 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   function init(){ document.querySelectorAll('canvas.pv-orb').forEach(buildSphere); }
   document.readyState==='loading'?addEventListener('DOMContentLoaded',init):init();
 })();
-
 </script>
 <script>
-/* Primus by Vaneguard
+/* Kognar Engine by Corvanta
    Page logic: package tabs, order summary, FAQ, performance charts. */
 function switchTab(tab,btn){
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');p.hidden=true;});
@@ -1007,7 +1092,9 @@ function toggleFaq(btn){
    this page, so the visitor always sees exactly what gets sent. */
 (function(){
   var TG='https://t.me/cateb007';
-  var MAIL='PrimusByVaneguardSupport@gmail.com';
+  /* Live support inbox. Also appears as mailto: links in the contact block and
+     the footer; change all of them together. */
+  var MAIL='corvantasupportteam@gmail.com';
   function init(){
     var name=document.getElementById('cfName');
     if(!name) return;
@@ -1020,7 +1107,7 @@ function toggleFaq(btn){
     function build(){
       var who=(name.value||'').trim();
       var lines=[];
-      lines.push('Hello Primus, '+(who?'my name is '+who+'.':'I would like to get in touch.'));
+      lines.push('Hello Corvanta, '+(who?'my name is '+who+'.':'I would like to get in touch.'));
       lines.push('');
       lines.push('Interested in: '+interest.value);
       if(budget.value!=='Not decided yet') lines.push('Starting account size: '+budget.value);
@@ -1093,13 +1180,13 @@ document.addEventListener('DOMContentLoaded',function(){
   tabFromHash();
   addEventListener('hashchange',tabFromHash);
 
-  /* seeded 156-week performance sequence */
+  /* seeded 185-week performance sequence */
   var seq=[],wc=0,ac=0,mc=0;
-  var missAt=[12,28,45,67,89,130];
-  var aboveAt=[7,22,37,52,68,83,98,112,120,135,148];
-  for(var i=0;i<156;i++){
-    if(missAt.includes(i)&&mc<6){seq.push('m');mc++;}
-    else if(aboveAt.includes(i)&&ac<11){seq.push('a');ac++;}
+  var missAt=[8,19,31,42,54,66,77,89,100,112,124,135,147,158,170,181];
+  var aboveAt=[6,20,34,48,62,76,90,104,118,132,146,160,174];
+  for(var i=0;i<185;i++){
+    if(missAt.includes(i)&&mc<16){seq.push('m');mc++;}
+    else if(aboveAt.includes(i)&&ac<13){seq.push('a');ac++;}
     else{seq.push('w');wc++;}
   }
   function spread(i,lo,hi){var x=Math.sin(i*12.9898)*43758.5453;x=x-Math.floor(x);return lo+x*(hi-lo);}
@@ -1108,7 +1195,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var perfEl=document.getElementById('perfChart');
   if(perfEl){
     perfEl.setAttribute('role','img');
-    perfEl.setAttribute('aria-label','156 weeks of results: 139 weeks hit target, 11 weeks above target, 6 weeks below target.');
+    perfEl.setAttribute('aria-label','185 weeks of results: 156 weeks hit target, 13 weeks above target, 16 weeks below target.');
     seq.forEach(function(t,i){
       var b=document.createElement('div');
       b.className='pc-bar '+t;
@@ -1128,7 +1215,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   var circ=2*Math.PI*48;
   function animateDonut(){
-    var total=156,hit=139,above=11,miss=6;
+    var total=185,hit=156,above=13,miss=16;
     var aboveArc=circ*(above/total),hitArc=circ*(hit/total),missArc=circ*(miss/total);
     var ae=document.getElementById('donut-above'),he=document.getElementById('donut-hit'),me=document.getElementById('donut-miss');
     if(ae){ae.style.strokeDasharray=aboveArc+' '+circ;ae.style.strokeDashoffset='0';}
@@ -1150,7 +1237,6 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 
 });
-
 </script>
 </body>
 </html>
