@@ -353,13 +353,7 @@ section{position:relative;padding:116px 0}
 .addon-plus{width:18px;height:18px;flex-shrink:0;border-radius:4px;background:var(--blu);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
 .addon-lbl{font-size:12.5px;color:var(--t2);flex:1}
 .addon-price-tag{font-family:var(--mono);font-size:12px;color:var(--blu);font-weight:600}
-/* required component sits above the optional block and reads as part of the build */
-.addons-hdr.req-hdr{color:var(--blu)}
-.addons-req{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blu);background:var(--bluGlow);border:1px solid var(--bluLine);padding:2px 7px;border-radius:5px}
-.card-addon-row.row-req{border-color:var(--bluLine);background:var(--bluGlow)}
-.card-addon-row.row-req .addon-lbl{color:var(--t1);font-weight:600}
-.addon-plus.plus-req{background:var(--blu)}
-.addon-note{font-size:11.5px;line-height:1.6;color:var(--t3);margin:-2px 0 10px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.card-addon-row+.addons-hdr{margin-top:6px}
 .p-note{font-size:13.5px;color:var(--t2);margin-top:20px;padding:12px 16px;background:var(--bluGlow);border:1px solid var(--bluLine);border-radius:var(--r);max-width:560px}
 
 .ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:20px}
@@ -682,9 +676,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
           <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li><li>MT5 &amp; MT4 compatible</li></ul>
           <a href="https://whop.com/checkout/plan_cQSKskKy0jTV3" target="_blank" rel="noopener" class="p-btn p-btn-sel" aria-label="Buy the $330 Bronze Tier Assist bot package on MT5 / MT4">Buy Now &#8594;</a>
           <div class="card-addons">
-            <div class="addons-hdr req-hdr">Integrated VPN <span class="addons-req">Required</span></div>
-            <a href="https://whop.com/checkout/plan_LGizHu89IZb3p" target="_blank" rel="noopener" class="card-addon-row row-req" aria-label="Add the required Integrated VPN component to the $330 package"><span class="addon-plus plus-req">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$150 &#8594;</span></a>
-            <p class="addon-note">Part of a complete installation, not an optional extra. Bought separately so you can add it at checkout or later.</p>
+            <a href="https://whop.com/checkout/plan_LGizHu89IZb3p" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add the Integrated VPN component to the $330 package"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$150 &#8594;</span></a>
             <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
             <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add Setup and Lifetime Support to the $330 package"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
           </div>
@@ -694,9 +686,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
           <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li>Automated entry &amp; exit</li><li>Risk management built-in</li><li>MT5 &amp; MT4 compatible</li></ul>
           <a href="https://whop.com/checkout/plan_O2JixTOXv9uZp" target="_blank" rel="noopener" class="p-btn p-btn-sel" aria-label="Buy the $550 Bronze Tier Assist bot package on MT5 / MT4">Buy Now &#8594;</a>
           <div class="card-addons">
-            <div class="addons-hdr req-hdr">Integrated VPN <span class="addons-req">Required</span></div>
-            <a href="https://whop.com/checkout/plan_HKLEmoGS65ohT" target="_blank" rel="noopener" class="card-addon-row row-req" aria-label="Add the required Integrated VPN component to the $550 package"><span class="addon-plus plus-req">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$200 &#8594;</span></a>
-            <p class="addon-note">Part of a complete installation, not an optional extra. Bought separately so you can add it at checkout or later.</p>
+            <a href="https://whop.com/checkout/plan_HKLEmoGS65ohT" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add the Integrated VPN component to the $550 package"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$200 &#8594;</span></a>
             <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
             <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add Setup and Lifetime Support to the $550 package"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
           </div>
@@ -710,9 +700,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
           <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Multi-strategy engine</li><li>Advanced risk logic</li><li>MT5 &amp; MT4 compatible</li></ul>
           <a href="https://whop.com/checkout/plan_yF4Nc9RLqZMhU" target="_blank" rel="noopener" class="p-btn p-btn-sel" aria-label="Buy the $1,100 Standard Tier bot package on MT5 / MT4">Buy Now &#8594;</a>
           <div class="card-addons">
-            <div class="addons-hdr req-hdr">Integrated VPN <span class="addons-req">Required</span></div>
-            <a href="https://whop.com/checkout/plan_WinMxyztRnzNw" target="_blank" rel="noopener" class="card-addon-row row-req" aria-label="Add the required Integrated VPN component to the $1,100 package"><span class="addon-plus plus-req">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$300 &#8594;</span></a>
-            <p class="addon-note">Part of a complete installation, not an optional extra. Bought separately so you can add it at checkout or later.</p>
+            <a href="https://whop.com/checkout/plan_WinMxyztRnzNw" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add the Integrated VPN component to the $1,100 package"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$300 &#8594;</span></a>
             <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
             <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add Setup and Lifetime Support to the $1,100 package"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
           </div>
@@ -725,9 +713,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
           <ul class="p-features"><li>Forex, Crypto &amp; Futures</li><li class="gold">Gold (XAUUSD) Bot included</li><li>Multi-strategy engine</li><li>Priority support</li><li>MT5 &amp; MT4 compatible</li></ul>
           <a href="https://whop.com/checkout/plan_HAZiWVgZfv14i" target="_blank" rel="noopener" class="p-btn p-btn-sel" aria-label="Buy the $2,200 Premium Tier bot package on MT5 / MT4">Buy Now &#8594;</a>
           <div class="card-addons">
-            <div class="addons-hdr req-hdr">Integrated VPN <span class="addons-req">Required</span></div>
-            <a href="https://whop.com/checkout/plan_vkMsb8P9o9wDf" target="_blank" rel="noopener" class="card-addon-row row-req" aria-label="Add the required Integrated VPN component to the $2,200 package"><span class="addon-plus plus-req">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$350 &#8594;</span></a>
-            <p class="addon-note">Part of a complete installation, not an optional extra. Bought separately so you can add it at checkout or later.</p>
+            <a href="https://whop.com/checkout/plan_vkMsb8P9o9wDf" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add the Integrated VPN component to the $2,200 package"><span class="addon-plus">+</span><span class="addon-lbl">Integrated VPN</span><span class="addon-price-tag">$350 &#8594;</span></a>
             <div class="addons-hdr">Optional Add-Ons <span class="addons-tap">Tap to buy</span></div>
             <a href="https://whop.com/checkout/plan_DTQbAMwrtDKeG" target="_blank" rel="noopener" class="card-addon-row" aria-label="Add Setup and Lifetime Support to the $2,200 package"><span class="addon-plus">+</span><span class="addon-lbl">Setup &amp; Lifetime Support</span><span class="addon-price-tag">$100 &#8594;</span></a>
           </div>
