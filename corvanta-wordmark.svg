@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
+  <title id="title">Corvanta</title>
+  <desc id="desc">Corvanta company wordmark.</desc>
+  <g transform="translate(20 43)">
+    <path fill="#005BEA" d="m0 25 25-14h47L49 35H27L15 42v28l12 7h22l23 24H25L0 87z"/>
+    <path fill="#06142C" d="m72 11 18 10v24L62 73H27L15 66V42l12-7h22z"/>
+    <path fill="#9FAFC4" d="m90 45-18 10v22L49 101V77l13-7 10-14z"/>
+  </g>
+  <text x="130" y="112" fill="#06142C" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="700" letter-spacing="1">Corvanta</text>
+  <rect x="132" y="129" width="360" height="4" rx="2" fill="#005BEA"/>
+</svg>
