@@ -1,4 +1,36 @@
+# Kognar Engine by Corvanta
+# Everything on this site is public and crawlable.
+
 User-agent: *
+Allow: /
+
+# Named explicitly so AI assistants can read and cite these pages.
+# (The wildcard above already permits them; these lines just make it unambiguous.)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://vaneguardgroup.com/sitemap.xml
