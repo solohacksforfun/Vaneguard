@@ -1,4 +1,4 @@
-/* Primus by Vaneguard
+/* Kognar Engine by Corvanta
    Design system: tokens, layout, components.
    .zone-dark re-declares the same tokens with inverted values so
    dark sections (footer, contact) restyle without duplicate rules. */
@@ -21,7 +21,7 @@ button{font-family:inherit}
   --e:cubic-bezier(.32,.72,0,1);--fast:.25s var(--e);--slow:.6s var(--e);
   --r:8px;--r2:12px;--r3:16px;
 }
-/* dark-zone override: footer, .primus panel, contact section.
+/* dark-zone override: footer, .kognar panel, contact section.
    Same token names, inverted values -> every component below
    (cards, kickers, buttons, text) adapts automatically. */
 .zone-dark{
@@ -122,7 +122,6 @@ section{position:relative;padding:116px 0}
 @media(max-width:999px){.h-split{grid-template-columns:1fr}.h-gem{order:-1;max-width:240px;margin:0 auto 4px}}
 @media(max-width:640px){.hero{min-height:auto;padding-top:108px;padding-bottom:40px}.h-trust{gap:14px}.h-gem{max-width:200px}.h-title{margin-top:16px}}
 
-
 /* CRYSTAL CARDS */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);position:relative;overflow:hidden;transition:border-color .18s ease,box-shadow .18s ease;box-shadow:0 1px 2px rgba(6,20,41,.04)}
 .zone-dark .card{box-shadow:none}
@@ -135,12 +134,9 @@ section{position:relative;padding:116px 0}
 /* FIND-IT CARDS (why-section) */
 .findit{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .fi-card{padding:32px 26px;display:flex;flex-direction:column;align-items:flex-start}
-.fi-badge{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blu);background:var(--bluGlow);border:1px solid rgba(20,50,160,.2);padding:4px 10px;border-radius:6px;margin-bottom:18px}
 .fi-num{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--blu);line-height:1;margin-bottom:14px}
 .fi-title{font-family:var(--disp);font-size:18px;font-weight:700;color:var(--t1);margin-bottom:8px}
 .fi-desc{font-size:13.5px;color:var(--t2);line-height:1.7;flex:1}
-.fi-go{margin-top:20px;font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--blu);display:flex;align-items:center;gap:7px;transition:gap var(--fast)}
-.fi-go svg{width:12px;height:12px;stroke:var(--blu);fill:none;stroke-width:2;stroke-linecap:round;transition:transform .3s var(--e)}
 
 @media(max-width:1200px){.findit{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.findit{grid-template-columns:1fr}}
@@ -154,17 +150,7 @@ section{position:relative;padding:116px 0}
 .step p{font-size:13.5px;color:var(--t2);line-height:1.75}
 @media(max-width:860px){.stepgrid{grid-template-columns:1fr}}
 
-/* PHILO / PRIMUS PANEL */
-.philo{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
-.philo-gem{display:flex;align-items:center;justify-content:center}
-.philo-gem canvas{width:100%;height:100%}
-@media(max-width:1024px){.philo{grid-template-columns:1fr;gap:38px}.philo-gem{max-width:280px;margin:0 auto}}
-.pf-list{display:flex;flex-direction:column;gap:14px}
-.pf-item{display:flex;gap:16px;align-items:flex-start;padding:20px;border:1px solid var(--line);border-radius:var(--r2);background:var(--panel);transition:border-color .18s ease}
-.pf-item:hover{border-color:var(--line2)}
-.pf-text h4{font-family:var(--disp);font-size:15px;font-weight:800;color:var(--t1);margin-bottom:4px}
-.pf-text p{font-size:13px;color:var(--t2);line-height:1.65}
-.pv-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);padding:28px}
+/* PANEL HEADER + MINI CHART */
 .pv-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .pv-title{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.06em;text-transform:uppercase}
 .pv-chart{height:96px;display:flex;align-items:flex-end;gap:2px;margin-bottom:20px}
@@ -173,10 +159,6 @@ section{position:relative;padding:116px 0}
 .pv-bar.w{background:linear-gradient(to top,var(--blu),var(--cyan))}
 .pv-bar.a{background:linear-gradient(to top,var(--amber),#e3c583)}
 .pv-bar.m{background:var(--t4)}
-.pv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pvs{text-align:center}
-.pvs-val{font-family:var(--disp);font-size:1.3rem;font-weight:800;color:var(--t1)}
-.pvs-lbl{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin-top:3px}
 
 /* STAT ROW */
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;margin-top:44px}
@@ -221,7 +203,6 @@ section{position:relative;padding:116px 0}
 
 .perf-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
 .pd-card{padding:22px;text-align:center}
-.pd-icon{font-size:1.5rem;margin-bottom:8px}
 .pd-val{font-family:var(--disp);font-size:1.4rem;font-weight:800;color:var(--t1);margin-bottom:3px}
 .pd-val.green{color:#1f8a54}
 .pd-lbl{font-size:11px;color:var(--t2)}
@@ -273,11 +254,17 @@ section{position:relative;padding:116px 0}
 .addon-plus{width:18px;height:18px;flex-shrink:0;border-radius:4px;background:var(--blu);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
 .addon-lbl{font-size:12.5px;color:var(--t2);flex:1}
 .addon-price-tag{font-family:var(--mono);font-size:12px;color:var(--blu);font-weight:600}
+/* required component sits above the optional block and reads as part of the build */
+.addons-hdr.req-hdr{color:var(--blu)}
+.addons-req{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blu);background:var(--bluGlow);border:1px solid var(--bluLine);padding:2px 7px;border-radius:5px}
+.card-addon-row.row-req{border-color:var(--bluLine);background:var(--bluGlow)}
+.card-addon-row.row-req .addon-lbl{color:var(--t1);font-weight:600}
+.addon-plus.plus-req{background:var(--blu)}
+.addon-note{font-size:11.5px;line-height:1.6;color:var(--t3);margin:-2px 0 10px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 .p-note{font-size:13.5px;color:var(--t2);margin-top:20px;padding:12px 16px;background:var(--bluGlow);border:1px solid var(--bluLine);border-radius:var(--r);max-width:560px}
 
 .ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:20px}
 .ind-card{padding:26px}
-.ind-icon{font-size:1.3rem;margin-bottom:10px}
 .ind-name{font-family:var(--disp);font-size:16px;font-weight:800;color:var(--t1);margin-bottom:3px}
 .ind-tagline{font-size:12.5px;color:var(--blu);font-weight:600;margin-bottom:10px}
 .ind-desc{font-size:13px;color:var(--t2);line-height:1.65;margin-bottom:16px}
@@ -371,6 +358,8 @@ footer{border-top:1px solid var(--line);padding:80px 0 36px;position:relative;ov
 .f-ls a{font-size:14px;color:var(--t2);transition:color .18s ease}
 .f-ls a:hover{color:#fff}
 .f-btm{border-top:1px solid var(--line);padding-top:30px;display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;position:relative;z-index:1}
+.f-brandline{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.f-wordmark{height:42px;width:auto;opacity:.85}
 .f-copy{font-size:12.5px;color:var(--t3)}
 .f-mini{font-size:12px;color:var(--t3);line-height:1.7;max-width:680px}
 @media(max-width:1024px){.f-grid{grid-template-columns:1fr 1fr}.f-brand{grid-column:1/-1}}
@@ -405,7 +394,7 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
 .what-points{display:grid;gap:12px;margin-top:26px}
 .what-pt{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r2);background:var(--panel)}
 .what-pt .ic{width:38px;height:38px;border-radius:10px}
-.what-pt h4{font-family:var(--disp);font-size:15px;font-weight:800;color:var(--t1);margin-bottom:3px}
+.what-pt h3{font-family:var(--disp);font-size:15px;font-weight:800;color:var(--t1);margin-bottom:3px}
 .what-pt p{font-size:13.5px;color:var(--t2);line-height:1.65}
 .what-visual{position:relative}
 .what-visual .card{padding:26px}
@@ -486,13 +475,14 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   .burger{display:flex}
   .btn-lg{padding:16px 30px;font-size:13.5px}
   .stat-row{grid-template-columns:1fr 1fr}
-  .primus-grid,.contact-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
   .f-ls a{display:inline-block;padding:8px 0}
 }
 @media(max-width:640px){
   .nav-in{height:64px;gap:10px}
   .nav-logo-img{width:36px;height:36px;flex:0 0 36px;border-radius:9px}
-  .nav-name{font-size:13.5px}
+  /* the lockup is a word longer than a single-word brand, so it steps down here */
+  .nav-name{font-size:12.5px}
   .nav-cta .btn-sm{padding:9px 15px;font-size:11.5px}
   .burger{width:38px;height:38px}
   #nav.stuck .nav-in{height:60px}
@@ -502,3 +492,12 @@ canvas.pv-orb{display:block;width:100%;height:100%;background:transparent;outlin
   #stop{bottom:18px;right:18px;width:42px;height:42px}
   .findit,.stepgrid,.stat-row,.pairs-grid,.perf-detail-grid,.ind-grid,.cards-row{grid-template-columns:1fr}
 }
+/* narrowest phones: stack the lockup onto two lines rather than clipping it */
+@media(max-width:400px){
+  .nav-name{white-space:normal;line-height:1.15}
+  .nav-name b{display:block}
+}
+
+/* drawdown shown alongside any published win-rate figure */
+.dd-note{font-size:12px;line-height:1.65;color:var(--t3);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.dd-note a{color:var(--blu);font-weight:600}
